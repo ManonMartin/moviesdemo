@@ -1,6 +1,6 @@
 server <- function(input, output, session){
 
-  updateSelectizeInput(session, 'movie', choices = movies$title, server = TRUE)
+  updateSelectizeInput(session, 'movie', choices = moviesdemo::movies$title, server = TRUE)
 
   max_movies <- eventReactive(eventExp = input$newpar, valueExpr = isolate(input$how_many))
 
@@ -10,11 +10,17 @@ server <- function(input, output, session){
   })
 
   output$selected <- renderUI({
+    validate(
+      need(isTRUE(input$movie %in% moviesdemo::movies$title), "Select a movie first!")
+    )
     HTML(paste0("<font size = 6px><b> ", "Selected movie: ", select_movies()$selected, " </b></font>"))
   })
 
   ##### Create divs######
   output$advised_movies <- renderUI({
+    validate(
+      need(isTRUE(input$movie %in% moviesdemo::movies$title), "Select a movie first!")
+    )
     text_output_list <- lapply(1:max_movies(), function(i) {
       name <- paste("textbox_", i, sep="")
       htmlOutput(name)

@@ -6,7 +6,7 @@ ui <- fluidPage(
 
     sidebarPanel(
 
-      selectizeInput("movie", label = "Choose a movie", selected = "Avatar", choices = NULL,
+      selectizeInput("movie", label = "Choose a movie", selected = "Avatar", choices = moviesdemo::movies$title,
                      multiple = FALSE, options = list(placeholder = 'Type a movie name')),
       numericInput("how_many", "How many movies to advise?", 5, 1, 100, 1),
       tags$hr(),
