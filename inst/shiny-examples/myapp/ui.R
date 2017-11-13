@@ -6,7 +6,7 @@ ui <- fluidPage(
 
     sidebarPanel(
 
-      selectizeInput("movie", label = "Movie choice", selected = "Avatar", choices = NULL,
+      selectizeInput("movie", label = "Choose a movie", selected = "Avatar", choices = NULL,
                      multiple = FALSE, options = list(placeholder = 'Type a movie name')),
       numericInput("how_many", "How many movies to advise?", 5, 1, 100, 1),
       tags$hr(),
@@ -15,7 +15,7 @@ ui <- fluidPage(
       sliderInput("rating", "How important is the rating?", value = 1, min = 0, max = 5, step = 1),
       sliderInput("producer", "How important is the production company?", value = 1, min = 0, max = 5, step = 1),
       tags$hr(),
-      actionButton("newpar", label = "Update movie advice!")
+      actionButton("newpar", label = "Update movies!")
 
     ),
 

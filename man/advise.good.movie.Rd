@@ -6,6 +6,13 @@
 \usage{
 advise.good.movie(similar_to, how_many, ...)
 }
+\arguments{
+\item{similar_to}{character, movie title from the database.}
+
+\item{how_many}{integer, how many movies to advise.}
+
+\item{...}{additional arguments.}
+}
 \description{
 Documentation...
 }

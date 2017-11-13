@@ -3,7 +3,7 @@
 \docType{data}
 \name{movies}
 \alias{movies}
-\title{TMDb 5000 movie dataset}
+\title{TMDb 4800 movie dataset}
 \format{An object of class \code{data.frame} with 4800 rows and 9 columns.}
 \source{
 \url{https://www.kaggle.com/tmdb/tmdb-movie-metadata}
@@ -12,6 +12,6 @@
 movies
 }
 \description{
-Metadata on ~5000 movies from TMDb.
+Metadata on 4800 movies from TMDb.
 }
 \keyword{datasets}

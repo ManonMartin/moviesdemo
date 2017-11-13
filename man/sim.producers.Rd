@@ -6,6 +6,11 @@
 \usage{
 sim.producers(movie_A, movie_B)
 }
+\arguments{
+\item{movie_A}{character, one movie title from the movie database}
+
+\item{movie_B}{character, another movie title from the movie database}
+}
 \description{
 Documentation...
 }

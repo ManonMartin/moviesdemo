@@ -2,8 +2,13 @@
 #'
 #' Documentation...
 #'
+#' @param movie_A character, one movie title from the movie database
+#' @param movie_B character, another movie title from the movie database
+#'
 #' @export
 sim.genres <- function(movie_A, movie_B){
+
+  movies <- moviesdemo::movies
 
   movie_A <- match.arg(movie_A, movies$title)
   movie_B <- match.arg(movie_B, movies$title)
@@ -18,8 +23,13 @@ sim.genres <- function(movie_A, movie_B){
 #'
 #' Documentation...
 #'
+#' @param movie_A character, one movie title from the movie database
+#' @param movie_B character, another movie title from the movie database
+#'
 #' @export
 sim.producers <- function(movie_A, movie_B){
+
+  movies <- moviesdemo::movies
 
   movie_A <- match.arg(movie_A, movies$title)
   movie_B <- match.arg(movie_B, movies$title)

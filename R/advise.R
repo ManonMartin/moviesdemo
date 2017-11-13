@@ -2,12 +2,16 @@
 #'
 #' Documentation...
 #'
+#' @param similar_to character, movie title from the database.
+#' @param how_many integer, how many movies to advise.
+#' @param ... additional arguments.
 #'
 #' @export
 advise.good.movie <- function(similar_to, how_many, ...){
 
   dots <- list(...)
   weights <- if(is.null(dots$weights)) rep(-1, 4) else dots$weights
+  movies <- moviesdemo::movies
   names(weights) <- c("genre", "popularity", "rating", "production company")
   movie <- match.arg(similar_to, movies$title)
 
