@@ -12,15 +12,30 @@ width: 1600
 height: 1000
 font-family: 'Helvetica'
 
-Install Git
+Demo package
 ========================================================
 
-<!-- ### Download Git -->
+### `moviesdemo` R-package
+
+* We created a demonstration R-package `moviesdemo` accompanying the slides
+* This package contains the necessary folders and files for a basic R-package
+* You can compare and copy files from `moviesdemo` to your own R-package (created from scratch)
+
+### Package details
+
+* The package includes a dataset containing metadata (e.g. title, popularity, plot, etc.) on 4800 movies from The Movie Database (TMDb)
+* The goal of the package is to advise similar movies to watch based on a movie selected by the user
+* The package includes a Shiny application to give the functions a user-friendly interface
+
+### Clone `moviesdemo` to your PC
+
+Install **Git** To clone or download (not install!) the package to your local PC:
 
 * on Windows: http://git-scm.com/download/win
 * on OS X: http://git-scm.com/download/mac
 * on Debian/Ubuntu: `sudo apt-get install git-core`
 * on other Linux distros: http://git-scm.com/download/linux
+
 
 Clone existing Git repository (1)
 ========================================================
@@ -87,8 +102,6 @@ library("x")
 * **binary**: compressed single file used to distribute your package (very different internal structure); platform specific: `.zip` (Windows), `.tgz` (Mac)
 * **installed**: decompressed package into a package library (i.e. directory containing installed packages)
 * **in-memory**: loaded package, required to be used
-
-
 
 ```{r, fig.height=5, out.width = '40%', echo = F}
 knitr::include_graphics("pictures/PackageStates.png")
@@ -164,7 +177,6 @@ knitr::include_graphics("pictures/RPackageCreation.png")
 * Create a git repository (optionnal)
 
 **Note**: name your package with letters, numbers and periods; it must start with a letter and cannot end with a period.
-
 
 Package structure
 ========================================================
@@ -378,6 +390,20 @@ advise.good.movie <- function(similar_to, how_many, ...){
 
   }
 ```
+
+Help files
+========================================================
+
+### Create pdf reference manual
+
+In order to create a pdf reference manual from the documentation (`.Rd`) files, you can run in R:
+
+```{r, eval = F}
+system("R CMD Rd2pdf /path/to/package_root")
+```
+
+**Note**: if you submit your package to CRAN, the reference manual is created automatically by CRAN, (e.g. https://cran.r-project.org/web/packages/pdSpecEst/pdSpecEst.pdf)
+
 
 NAMESPACE*
 ========================================================
@@ -600,11 +626,7 @@ class: small-code
 Speed up your code by including `C` or `C++` code in your package with `Rcpp` (and `RcppArmadillo` or `RcppEigen`). For more details, see e.g. http://adv-r.had.co.nz/Rcpp.html or http://r-pkgs.had.co.nz/src.html.
 
 ### To illustrate
-<<<<<<< HEAD
 ```{r}
-=======
-```{r, eval=FALSE}
->>>>>>> bea13c1d516d741532b4582417cac2f1fd1f7688
 ## write C++ function
 Rcpp::cppFunction(depends = "RcppArmadillo", 'arma::cx_mat mExp_C(arma::cx_mat A) {
   arma::cx_mat A_exp = arma::expmat(A);
@@ -620,7 +642,6 @@ mExp_R <- function(A){
 ## Computation times
 A <- matrix(complex(real = rnorm(4), imaginary = rnorm(4)), nrow = 2)
 microbenchmark::microbenchmark(mExp_R(A), mExp_C(A))
-
 ```
 
 Git and GitHub
