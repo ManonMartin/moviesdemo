@@ -97,11 +97,11 @@ Why you should write a R package
 * Conventions and tools standardisation
 * Available tests and checks
 
-
 ### Portable code
 * Easier to share code within your team and/or carry out a group work
 * Open your code to the R community (extra testing for bugs, meet new needs, etc.)
 * Publish and value your coding work (along with your articles)
+* For Shiny app deployment hosted online (GitHub)
 
 &nbsp;
 
@@ -152,7 +152,7 @@ The RStudio interface and start of a package
 * Select source files (= R scripts) (optionnal)
 * Create a git repository (optionnal)
 
-**Note**: name your package with letters, numbers and periods; it must start with a letter and cannot end with a period.
+**Note**: The choice of the name is important for your package visibility!! Name it with letters, numbers and periods; it must start with a letter and cannot end with a period.
 
 
 Package structure
@@ -176,36 +176,28 @@ DESCRIPTION (1)
 
 Mandatory DCF file that storages the package metadata. Mainly specifies dependencies, who can use it (license) and whom to contact in case of problems.
 
-**Tip:** use a `README.md` (http://r-pkgs.had.co.nz/release.html#readme) and/or a package doucmentation file to add more detailled infos about the package.
-
 
 ## Structure
 
 <div class="sourceCode"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span class="fu"><font color="#8A0868">fieldName: </font></span>value</code></pre></div>
 
-**Note:** indentation needed if spanned on multiple lines
-
-
-
-### Title and description
-Will appear on CRAN
-
 <code class="sourceCode yaml"><span class="fu"><font color="#8A0868">Title </font></span></code> is a one line description of the package
-<code class="sourceCode yaml"><span class="fu"><font color="#8A0868">Description </font></span></code> multiple sentences short description of the package.
+
+<code class="sourceCode yaml"><span class="fu"><font color="#8A0868">Description </font></span></code> Multiple sentences short description of the package.
+
+<code class="sourceCode yaml"><span class="fu"><font color="#8A0868">Authors@R </font></span></code> Package *Authors* (`"aut"`), Creator and package *Maintainer* (`"cre"`), Contributors (`"ctb"`), etc. [Comprehensive list](http://www.loc.gov/marc/relators/relaterm.html)
+
+<code class="sourceCode yaml"><span class="fu"><font color="#8A0868">Version </font></span></code>
+* Released version: `<major>.<minor>.<patch>`
+* In-development package: 4th component, starts at 0.0.0.9000
+
+<code class="sourceCode yaml"><span class="fu"><font color="#8A0868">License </font></span></code>
+Important for the package release. Explain who and how to use the package (e.g. GPL-3)
+A `LICENSE` file can be added for more information.
 
 
 
-### Version
-
-### Authors
-
-
-### License
-
-
-
-#### LazyData
-
+<code class="sourceCode yaml"><span class="fu"><font color="#8A0868">LazyData </font></span></code>Set to `TRUE` by default
 
 
 
@@ -276,23 +268,130 @@ FUN <- function(x) {
 **Notes:**
 * Alternative setting of dependencies: namespace imports
 * Versioning to specify a minimum package version: `Suggests: knitr(>=1.17)`
-Packages listed must be present and are installed if not.
 
 
 
-R scripts
+More package documentation
 ========================================================
+* Create a `README.md`
 
-* Located in the `R` directory
+Suggested structure (from Hadley Wickham):
 
-**Tip** for R functions development: use `devtools::load_all()` to avoid a re-installation
+1. Describe the high-level purpose of the package
+2. An example where the package is applied
+3. Installation instructions
+4. Overview of the main components of the package (a Vignette is more exhaustive!)
 
-<img src="pictures/load_all.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" width="55%" style="display: block; margin: auto;" />
+&nbsp;
 
+* Package documentation
+
+
+```r
+help("moviesdemo")
+```
+
+
+
+
+R scripts Good practices (1)
+========================================================
+### Functions names
+Should be meaningful and end with `.R`
+
+### Code style
+* `formatR::tidy_dir()`: automatically reformats R code
+* `lintr::lint_package()`: warns about problems
+* Check conventions for object names, spacing, {}, commenting, indentation, etc. (cf. http://adv-r.had.co.nz/Style.html)
+
+### Top-level code rules in the scripts
+Never use: `library()` or `require()` packages will not be loaded and modifies the search path; `source()` modifies the current environment
+
+Use carefuly (reset after use): the global `options()`,  the graphical parameter `par()`, all functions modifying default directories (e.g. `.libPaths()`, `setwd()`)
+
+**Tip** for the R functions development workflow: use `devtools::load_all()` to avoid a re-installation
+<img src="pictures/load_all.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" width="55%" style="display: block; margin: auto;" />
+
+
+R scripts Good practices (2)
+========================================================
+### Input arguments check
+
+
+```r
+FUN <- function(a, type = c("mean", "median")) {
+  switch(type,
+         mean = mean(a),
+         median = median(a))
+}
+```
+
+
+```r
+FUN(a = c(1, 4, 6, "R", 5, 2, 1) , type="mean")
+```
+
+```
+# Warning in mean.default(a): argument is not numeric or logical: returning
+# NA
+```
+
+```
+# [1] NA
+```
+
+
+```r
+FUN(a = c(1, 4, 6, 5, 5, 2, 1), type="meen")
+```
+
+
+R scripts (3)
+========================================================
+## Good practices
+### Input arguments check
+
+
+```r
+FUN <- function(a, type = c("mean", "median")) {
+   if (!is.numeric(a)) {
+    warning(deparse(substitute(a)), " is not numeric")
+   }
+  type <- match.arg(type)
+  switch(type,
+         mean = mean(a),
+         median = median(a))
+}
+```
+
+
+```r
+FUN(a = c(1, 4, 6, "R", 5, 2, 1), type="meen")
+```
+
+```
+# Warning in FUN(a = c(1, 4, 6, "R", 5, 2, 1), type = "meen"): c(1, 4, 6,
+# "R", 5, 2, 1) is not numeric
+```
+
+```
+# Error in match.arg(type): 'arg' should be one of "mean", "median"
+```
+
+
+```r
+FUN(a = c(1, 4, 6, 5, 5, 2, 1), type="mean")
+```
+
+```
+# [1] 3.428571
+```
 
 
 Help files
 ========================================================
+In the `man/` directory
+
 ### Motivations
 R documentation
 
@@ -342,6 +441,9 @@ sta
 
 ### Useful fields
 
+@docType
+
+
 
 Write help files with the roxygen2 package (2)
 ========================================================
@@ -383,7 +485,7 @@ nrow
 ```
 # function (x) 
 # dim(x)[1L]
-# <bytecode: 0x7fbcb5cbbd90>
+# <bytecode: 0x7ffbd19e0f90>
 # <environment: namespace:base>
 ```
 
@@ -437,7 +539,7 @@ NAMESPACE
 
 * In RStudio: `Build > Configure Build Tools > Build Tools`
 
-<img src="pictures/Fig3.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="55%" style="display: block; margin: auto;" />
+<img src="pictures/Fig3.png" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" width="55%" style="display: block; margin: auto;" />
 
 
 Data
@@ -664,7 +766,7 @@ Git and GitHub
 
 * New **Git** pane tracks changes in the code:
 
-<img src="pictures/Fig4.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="100%" style="display: block; margin: auto;" />
+<img src="pictures/Fig4.png" title="plot of chunk unnamed-chunk-32" alt="plot of chunk unnamed-chunk-32" width="100%" style="display: block; margin: auto;" />
 
 Git and GitHub
 =========================================================
@@ -681,7 +783,7 @@ Git and GitHub
 * Roll back changes to previous commit by clicking on `More > Revert` (cannot undo!)
 * You can also undo changes to part of a file or individual lines or changes that occured before the last commit, see e.g. http://r-pkgs.had.co.nz/git.html for more details
 
-<img src="pictures/Fig5.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="100%" style="display: block; margin: auto;" />
+<img src="pictures/Fig5.png" title="plot of chunk unnamed-chunk-33" alt="plot of chunk unnamed-chunk-33" width="100%" style="display: block; margin: auto;" />
 
 Git and GitHub
 =========================================================
@@ -717,7 +819,7 @@ Checking package
 * **NOTE**: mild problems, if you submit to CRAN try to eleminate all notes, if not explain why the note is not a problem in CRAN submission comments.
 
 ### Example output `devtools::check()`
-<img src="pictures/Fig6.png" title="plot of chunk unnamed-chunk-28" alt="plot of chunk unnamed-chunk-28" width="60%" style="display: block; margin: auto;" />
+<img src="pictures/Fig6.png" title="plot of chunk unnamed-chunk-35" alt="plot of chunk unnamed-chunk-35" width="60%" style="display: block; margin: auto;" />
 
 Checking package and Release
 =========================================================
@@ -750,7 +852,7 @@ Checking package and Release
 
 ### Example output Travis (linux, osx)
 
-<img src="pictures/Fig8.png" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="100%" style="display: block; margin: auto;" />
+<img src="pictures/Fig8.png" title="plot of chunk unnamed-chunk-37" alt="plot of chunk unnamed-chunk-37" width="100%" style="display: block; margin: auto;" />
 
 Checking package and Release
 =========================================================
@@ -762,7 +864,7 @@ Checking package and Release
 * Submit to CRAN with `devtools::release()`
 
 After acceptance CRAN builds binary packages for each platform (may uncover further errors).
-<img src="pictures/Fig7.png" title="plot of chunk unnamed-chunk-31" alt="plot of chunk unnamed-chunk-31" width="50%" style="display: block; margin: auto;" />
+<img src="pictures/Fig7.png" title="plot of chunk unnamed-chunk-38" alt="plot of chunk unnamed-chunk-38" width="50%" style="display: block; margin: auto;" />
 
 Shiny applications
 =========================================================
@@ -795,4 +897,12 @@ runMovieApp <- function() {
 ```
 
 
+Other RStudio facilities
+=========================================================
 
+RMarkdown
+Shiny
+KnitR
+
+
+https://www.rstudio.com/products/rpackages/

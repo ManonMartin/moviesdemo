@@ -6,5 +6,6 @@
 \alias{moviesdemo-package}
 \title{moviesdemo: A demo R package.}
 \description{
-Documentation for the whole package..
+A demo package for the SMCS course on creating and publishing R packages,
+based on metadata of 4800 movies from The Movie Database.
 }
