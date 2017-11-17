@@ -42,6 +42,8 @@ Clone existing Git repository (1)
 
 ```{r, echo = F}
 opts_chunk$set(out.width='750px', dpi=300, fig.align = "center", comment = "#")
+require(moviesdemo)
+require(knitr)
 library(Rcpp)
 library(RcppArmadillo)
 library(microbenchmark)
@@ -119,11 +121,11 @@ Why you should write a R package
 * Conventions and tools standardisation
 * Available tests and checks
 
-
 ### Portable code
 * Easier to share code within your team and/or carry out a group work
 * Open your code to the R community (extra testing for bugs, meet new needs, etc.)
 * Publish and value your coding work (along with your articles)
+* For Shiny app deployment hosted online (GitHub)
 
 &nbsp;
 
@@ -176,7 +178,7 @@ knitr::include_graphics("pictures/RPackageCreation.png")
 * Select source files (= R scripts) (optionnal)
 * Create a git repository (optionnal)
 
-**Note**: name your package with letters, numbers and periods; it must start with a letter and cannot end with a period.
+**Note**: The choice of the name is important for your package visibility!! Name it with letters, numbers and periods; it must start with a letter and cannot end with a period.
 
 Package structure
 ========================================================
@@ -201,36 +203,28 @@ DESCRIPTION (1)
 
 Mandatory DCF file that storages the package metadata. Mainly specifies dependencies, who can use it (license) and whom to contact in case of problems.
 
-**Tip:** use a `README.md` (http://r-pkgs.had.co.nz/release.html#readme) and/or a package doucmentation file to add more detailled infos about the package.
-
 
 ## Structure
 
 <div class="sourceCode"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span class="fu"><font color="#8A0868">fieldName: </font></span>value</code></pre></div>
 
-**Note:** indentation needed if spanned on multiple lines
-
-
-
-### Title and description
-Will appear on CRAN
-
 <code class="sourceCode yaml"><span class="fu"><font color="#8A0868">Title </font></span></code> is a one line description of the package
-<code class="sourceCode yaml"><span class="fu"><font color="#8A0868">Description </font></span></code> multiple sentences short description of the package.
+
+<code class="sourceCode yaml"><span class="fu"><font color="#8A0868">Description </font></span></code> Multiple sentences short description of the package.
+
+<code class="sourceCode yaml"><span class="fu"><font color="#8A0868">Authors@R </font></span></code> Package *Authors* (`"aut"`), Creator and package *Maintainer* (`"cre"`), Contributors (`"ctb"`), etc. [Comprehensive list](http://www.loc.gov/marc/relators/relaterm.html)
+
+<code class="sourceCode yaml"><span class="fu"><font color="#8A0868">Version </font></span></code>
+* Released version: `<major>.<minor>.<patch>`
+* In-development package: 4th component, starts at 0.0.0.9000
+
+<code class="sourceCode yaml"><span class="fu"><font color="#8A0868">License </font></span></code>
+Important for the package release. Explain who and how to use the package (e.g. GPL-3)
+A `LICENSE` file can be added for more information.
 
 
 
-### Version
-
-### Authors
-
-
-### License
-
-
-
-#### LazyData
-
+<code class="sourceCode yaml"><span class="fu"><font color="#8A0868">LazyData </font></span></code>Set to `TRUE` by default
 
 
 
@@ -300,25 +294,103 @@ FUN <- function(x) {
 **Notes:**
 * Alternative setting of dependencies: namespace imports
 * Versioning to specify a minimum package version: `Suggests: knitr(>=1.17)`
-Packages listed must be present and are installed if not.
 
 
 
-R scripts
+More package documentation
 ========================================================
+* Create a `README.md`
 
-* Located in the `R` directory
+Suggested structure (from Hadley Wickham):
 
-**Tip** for R functions development: use `devtools::load_all()` to avoid a re-installation
+1. Describe the high-level purpose of the package
+2. An example where the package is applied
+3. Installation instructions
+4. Overview of the main components of the package (a Vignette is more exhaustive!)
 
-```{r, fig.height=4, out.width = '55%', echo = F}
-knitr::include_graphics("pictures/load_all.png")
+&nbsp;
+
+* Package documentation
+
+```{r,results='asis'}
+help("moviesdemo")
 ```
 
 
 
+
+R scripts Good practices (1)
+========================================================
+### Functions names
+Should be meaningful and end with `.R`
+
+### Code style
+* `formatR::tidy_dir()`: automatically reformats R code
+* `lintr::lint_package()`: warns about problems
+* Check conventions for object names, spacing, {}, commenting, indentation, etc. (cf. http://adv-r.had.co.nz/Style.html)
+
+### Top-level code rules in the scripts
+Never use: `library()` or `require()` packages will not be loaded and modifies the search path; `source()` modifies the current environment
+
+Use carefuly (reset after use): the global `options()`,  the graphical parameter `par()`, all functions modifying default directories (e.g. `.libPaths()`, `setwd()`)
+
+**Tip** for the R functions development workflow: use `devtools::load_all()` to avoid a re-installation
+```{r, fig.height=4, out.width = '55%', echo = F, }
+knitr::include_graphics("pictures/load_all.png")
+```
+
+
+R scripts Good practices (2)
+========================================================
+### Input arguments check
+
+```{r}
+FUN <- function(a, type = c("mean", "median")) {
+  switch(type,
+         mean = mean(a),
+         median = median(a))
+}
+```
+
+```{r, error=TRUE, warning=TRUE}
+FUN(a = c(1, 4, 6, "R", 5, 2, 1) , type="mean")
+```
+
+```{r, error=TRUE, warning=TRUE}
+FUN(a = c(1, 4, 6, 5, 5, 2, 1), type="meen")
+```
+
+
+R scripts (3)
+========================================================
+## Good practices
+### Input arguments check
+
+```{r, error=TRUE, warning=TRUE}
+FUN <- function(a, type = c("mean", "median")) {
+   if (!is.numeric(a)) {
+    warning(deparse(substitute(a)), " is not numeric")
+   }
+  type <- match.arg(type)
+  switch(type,
+         mean = mean(a),
+         median = median(a))
+}
+```
+
+```{r, error=TRUE, warning=TRUE}
+FUN(a = c(1, 4, 6, "R", 5, 2, 1), type="meen")
+```
+
+```{r, error=TRUE, warning=TRUE}
+FUN(a = c(1, 4, 6, 5, 5, 2, 1), type="mean")
+```
+
+
 Help files
 ========================================================
+In the `man/` directory
+
 ### Motivations
 R documentation
 
@@ -367,6 +439,9 @@ sta
 
 
 ### Useful fields
+
+@docType
+
 
 
 Write help files with the roxygen2 package (2)
@@ -811,4 +886,12 @@ runMovieApp <- function() {
 ```
 
 
+Other RStudio facilities
+=========================================================
 
+RMarkdown
+Shiny
+KnitR
+
+
+https://www.rstudio.com/products/rpackages/
