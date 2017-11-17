@@ -12,6 +12,7 @@ width: 1600
 height: 1000
 font-family: 'Helvetica'
 
+
 Install Git
 ========================================================
 
@@ -52,6 +53,337 @@ Clone existing Git repository (2)
 ```{r, fig.height=5, out.width = '60%', echo = F}
 knitr::include_graphics("pictures/Fig2.png")
 ```
+
+Work with existing R packages
+========================================================
+
+Published packages (13/11/17): 11.809 on CRAN and 1.476 on Bioconductor
+
+### Install and load a R package
+```{r, eval=FALSE}
+# ------- INSTALL ---------------
+install.packages("x")
+# or
+source("https://bioconductor.org/biocLite.R")
+biocLite("x")
+# or
+install_github("x")
+
+# ------- LOAD and ATTACH -------
+library("x")
+```
+
+&nbsp;
+
+### Examples of R packages
+
+* https://github.com/ManonMartin/MBXUCL
+* https://cran.r-project.org/web/packages/pdSpecEst/
+
+
+ 5 ≠ package states
+========================================================
+* **source**: what we are currently working on during package development
+* **bundled**: compressed single file (`.tar.gz.`); intermediary state  (Windows/Mac) or for Linux distribution
+* **binary**: compressed single file used to distribute your package (very different internal structure); platform specific: `.zip` (Windows), `.tgz` (Mac)
+* **installed**: decompressed package into a package library (i.e. directory containing installed packages)
+* **in-memory**: loaded package, required to be used
+
+
+
+```{r, fig.height=5, out.width = '40%', echo = F}
+knitr::include_graphics("pictures/PackageStates.png")
+```
+<div style="text-align: right; font-size:0.5em;" > [source: https://github.com/rstudio/cheatsheets/raw/master/package-development.pdf ] </div>
+
+
+Why you should write a R package
+========================================================
+## PROS
+
+### Automation is key for time-saving
+* Avoid coding errors
+* Functions, data etc. documentation
+* Conventions and tools standardisation
+* Available tests and checks
+
+
+### Portable code
+* Easier to share code within your team and/or carry out a group work
+* Open your code to the R community (extra testing for bugs, meet new needs, etc.)
+* Publish and value your coding work (along with your articles)
+
+&nbsp;
+
+
+## CONS
+* More upstream work
+* must pass checks and meet the standards
+
+
+The `devtools` R package
+========================================================
+### Motivations
+*= Tools to make Developing R Packages Easier*
+* Simplifies and automates common development tasks
+* Encapsulated and developed in parallel with RStudio
+* Incorporates the best practices of package development
+
+&nbsp;
+
+### Few useful `devtools` functions
+  * `create("path-to/package-name")`: Creates a new package with the directory structures
+  * `load_all()`: Loads a package in memory
+  * `document()`: Uses Roxygen to document a package
+  * `check()`: Checks and builds and  a source package
+  * `build()`: Builds a source package
+  * `test()`: Executes the `test_that` tests in a package
+
+
+
+more info: https://cran.r-project.org/web/packages/devtools/
+
+
+The RStudio interface and start of a package
+========================================================
+
+### Useful RStudio facilities
+* Only within a project!
+* **Build** (tools for building and testing packages) and **Git** (Git and GitHub version control system) **tab panes**
+
+
+### Initiate a package
+* `File > New Project > New Directory > R package`  (or  `devtools::create("path-to/package-name")`)
+
+```{r, fig.height=5, out.width = '30%', echo = F}
+knitr::include_graphics("pictures/RPackageCreation.png")
+```
+
+
+* Set the package name and the project directory
+* Select source files (= R scripts) (optionnal)
+* Create a git repository (optionnal)
+
+**Note**: name your package with letters, numbers and periods; it must start with a letter and cannot end with a period.
+
+
+Package structure
+========================================================
+
+&nbsp;
+&nbsp;
+
+```{r, fig.height=5, out.width = '65%', echo = F}
+knitr::include_graphics("pictures/PackageStructure.png")
+```
+<div style="text-align: right">
+(not exhausitive) </div>
+
+<div style="text-align: right; font-size:0.5em;" > [source: https://github.com/rstudio/cheatsheets/raw/master/package-development.pdf ] </div>
+
+
+
+DESCRIPTION (1)
+========================================================
+
+## Motivation
+
+Mandatory DCF file that storages the package metadata. Mainly specifies dependencies, who can use it (license) and whom to contact in case of problems.
+
+**Tip:** use a `README.md` (http://r-pkgs.had.co.nz/release.html#readme) and/or a package doucmentation file to add more detailled infos about the package.
+
+
+## Structure
+
+<div class="sourceCode"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span class="fu"><font color="#8A0868">fieldName: </font></span>value</code></pre></div>
+
+**Note:** indentation needed if spanned on multiple lines
+
+
+
+### Title and description
+Will appear on CRAN
+
+<code class="sourceCode yaml"><span class="fu"><font color="#8A0868">Title </font></span></code> is a one line description of the package
+<code class="sourceCode yaml"><span class="fu"><font color="#8A0868">Description </font></span></code> multiple sentences short description of the package.
+
+
+
+### Version
+
+### Authors
+
+
+### License
+
+
+
+#### LazyData
+
+
+
+
+
+
+
+DESCRIPTION (2)
+========================================================
+
+### Excerpt from moviesdemo/DESCRIPION
+
+<div class="sourceCode"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span class="fu"><font color="#8A0868">Package: </font></span>moviesdemo
+<span class="fu"><font color="#8A0868">Type: </font></span>What the Package Does (Title Case)
+<span class="fu"><font color="#8A0868">Version: </font></span>0.0.0.9000
+<span class="fu"><font color="#8A0868">Authors@R: </font></span>c(
+    person("Joris", "Chau", email = "j.chau@uclouvain.be", role = c("aut", "cre")),
+    person("Manon", "Martin", email = "manon.martin@uclouvain.be", role = "aut"))
+<span class="fu"><font color="#8A0868">Description: </font></span>More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+<span class="fu"><font color="#8A0868">License: </font></span>CC0
+<span class="fu"><font color="#8A0868">URL: </font></span>https://github.com/JorisChau/moviesdemo
+<span class="fu"><font color="#8A0868">Encoding: </font></span>UTF-8
+<span class="fu"><font color="#8A0868">Depends: </font></span>R (>= 3.3.1)
+<span class="fu"><font color="#8A0868">LazyData: </font></span>true
+<span class="fu"><font color="#8A0868">Imports: </font></span>shiny
+<span class="fu"><font color="#8A0868">RoxygenNote: </font></span>6.0.1
+<span class="fu"><font color="#8A0868">Suggests: </font></span>
+    knitr,
+    rmarkdown,
+    testthat
+<span class="fu"><font color="#8A0868">VignetteBuilder: </font></span>knitr
+</code></pre></div>
+
+
+
+Dependencies in DESCRIPTION
+========================================================
+Comma separated list of needed package names.
+
+* <code class="sourceCode yaml"><span class="fu"><font color="#8A0868">Imports: </font></span></code>
+Packages listed must be present and are installed if not.
+
+**Tip**: ! `Imports` will only ensure that it is *installed* and will not *attach* it <br />
+=> Best practice:  refer explicitly to external functions with `package::function()`.
+
+
+* <code class="sourceCode yaml"><span class="fu"><font color="#8A0868">Suggests: </font></span></code>
+The packages are not required for installation but can be used (e.g. for datasets, to run tests or build vignettes, specific function needing the package).
+
+Test if a suggested package is available for a specific function `FUN`:
+
+```{r, eval=FALSE}
+FUN <- function(x) {
+  if (!requireNamespace("suggestedPackage", quietly = TRUE)) {
+    stop("suggestedPackage installation is necessary for function FUN")
+  }
+}
+```
+
+
+
+
+
+* <code class="sourceCode yaml"><span class="fu"><font color="#8A0868">Depends: </font></span></code> Used to require a specific version of R i.e. require a version greater than or equal to the currently used version.
+
+
+**Notes:**
+* Alternative setting of dependencies: namespace imports
+* Versioning to specify a minimum package version: `Suggests: knitr(>=1.17)`
+Packages listed must be present and are installed if not.
+
+
+
+R scripts
+========================================================
+
+* Located in the `R` directory
+
+**Tip** for R functions development: use `devtools::load_all()` to avoid a re-installation
+
+```{r, fig.height=4, out.width = '55%', echo = F}
+knitr::include_graphics("pictures/load_all.png")
+```
+
+
+
+Help files
+========================================================
+### Motivations
+R documentation
+
+
+
+* Located in the `man` directory
+* Slightly different between packages, functions or datasets descriptions
+* RStudio documentation tools include: **Preview** command, spell-checking, and Roxygen aware editing
+
+### Help file format (`.Rd`) \~ LaTeX
+
+
+### Excerpt from moviesdemo/man/advise.good.movie.Rd
+```{r, eval=FALSE}
+
+\name{advise.good.movie}
+\alias{advise.good.movie}
+\title{Advise movies based on another movie}
+\usage{
+advise.good.movie(similar_to, how_many, ...)
+}
+\arguments{
+\item{similar_to}{character, movie title from the database.}
+\item{how_many}{integer, how many movies to advise.}
+\item{...}{additional arguments.}
+}
+\description{
+Documentation...
+}
+```
+
+
+Write help files with the roxygen2 package (1)
+========================================================
+
+### Motivations
+sta
+
+
+
+### Workflow
+* Write Roxygenize comments always starting with `'#` either in a new R script (package or data) or at the top of the R script already containing the function
+*
+* Generate the documentation:
+`devtools::document(".")` or `Ctrl+Shift+D`
+
+
+### Useful fields
+
+
+Write help files with the roxygen2 package (2)
+========================================================
+
+### Excerpt from moviesdemo/R/advise.R
+```{r, eval=FALSE}
+#' Advise movies based on another movie
+#'
+#' Documentation...
+#'
+#' @param similar_to character, movie title from the database.
+#' @param how_many integer, how many movies to advise.
+#' @param ... additional arguments.
+#'
+#' @export
+
+advise.good.movie <- function(similar_to, how_many, ...){
+
+# ---- advise.good.movie function body ----
+
+  }
+```
+
+
+
+
+
 
 NAMESPACE*
 ========================================================
@@ -274,7 +606,7 @@ class: small-code
 Speed up your code by including `C` or `C++` code in your package with `Rcpp` (and `RcppArmadillo` or `RcppEigen`). For more details, see e.g. http://adv-r.had.co.nz/Rcpp.html or http://r-pkgs.had.co.nz/src.html.
 
 ### To illustrate
-```{r}
+```{r, eval=FALSE}
 ## write C++ function
 Rcpp::cppFunction(depends = "RcppArmadillo", 'arma::cx_mat mExp_C(arma::cx_mat A) {
   arma::cx_mat A_exp = arma::expmat(A);
