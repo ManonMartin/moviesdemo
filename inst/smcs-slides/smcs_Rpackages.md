@@ -12,6 +12,7 @@ width: 1600
 height: 1000
 font-family: 'Helvetica'
 
+
 Install Git
 ========================================================
 
@@ -44,6 +45,332 @@ Clone existing Git repository (2)
 
 <img src="pictures/Fig2.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="60%" style="display: block; margin: auto;" />
 
+Work with existing R packages
+========================================================
+
+Published packages (13/11/17): 11.809 on CRAN and 1.476 on Bioconductor
+
+### Install and load a R package
+
+```r
+# ------- INSTALL ---------------
+install.packages("x")
+# or
+source("https://bioconductor.org/biocLite.R")
+biocLite("x")
+# or
+install_github("x")
+
+# ------- LOAD and ATTACH -------
+library("x")
+```
+
+&nbsp;
+
+### Examples of R packages
+
+* https://github.com/ManonMartin/MBXUCL
+* https://cran.r-project.org/web/packages/pdSpecEst/
+
+
+ 5 ≠ package states
+========================================================
+* **source**: what we are currently working on during package development
+* **bundled**: compressed single file (`.tar.gz.`); intermediary state  (Windows/Mac) or for Linux distribution
+* **binary**: compressed single file used to distribute your package (very different internal structure); platform specific: `.zip` (Windows), `.tgz` (Mac)
+* **installed**: decompressed package into a package library (i.e. directory containing installed packages)
+* **in-memory**: loaded package, required to be used
+
+
+
+<img src="pictures/PackageStates.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="40%" style="display: block; margin: auto;" />
+<div style="text-align: right; font-size:0.5em;" > [source: https://github.com/rstudio/cheatsheets/raw/master/package-development.pdf ] </div>
+
+
+Why you should write a R package
+========================================================
+## PROS
+
+### Automation is key for time-saving
+* Avoid coding errors
+* Functions, data etc. documentation
+* Conventions and tools standardisation
+* Available tests and checks
+
+
+### Portable code
+* Easier to share code within your team and/or carry out a group work
+* Open your code to the R community (extra testing for bugs, meet new needs, etc.)
+* Publish and value your coding work (along with your articles)
+
+&nbsp;
+
+
+## CONS
+* More upstream work
+* must pass checks and meet the standards
+
+
+The `devtools` R package
+========================================================
+### Motivations
+*= Tools to make Developing R Packages Easier*
+* Simplifies and automates common development tasks
+* Encapsulated and developed in parallel with RStudio
+* Incorporates the best practices of package development
+
+&nbsp;
+
+### Few useful `devtools` functions
+  * `create("path-to/package-name")`: Creates a new package with the directory structures
+  * `load_all()`: Loads a package in memory
+  * `document()`: Uses Roxygen to document a package
+  * `check()`: Checks and builds and  a source package
+  * `build()`: Builds a source package
+  * `test()`: Executes the `test_that` tests in a package
+
+
+
+more info: https://cran.r-project.org/web/packages/devtools/
+
+
+The RStudio interface and start of a package
+========================================================
+
+### Useful RStudio facilities
+* Only within a project!
+* **Build** (tools for building and testing packages) and **Git** (Git and GitHub version control system) **tab panes**
+
+
+### Initiate a package
+* `File > New Project > New Directory > R package`  (or  `devtools::create("path-to/package-name")`)
+
+<img src="pictures/RPackageCreation.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" width="30%" style="display: block; margin: auto;" />
+
+
+* Set the package name and the project directory
+* Select source files (= R scripts) (optionnal)
+* Create a git repository (optionnal)
+
+**Note**: name your package with letters, numbers and periods; it must start with a letter and cannot end with a period.
+
+
+Package structure
+========================================================
+
+&nbsp;
+&nbsp;
+
+<img src="pictures/PackageStructure.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="65%" style="display: block; margin: auto;" />
+<div style="text-align: right">
+(not exhausitive) </div>
+
+<div style="text-align: right; font-size:0.5em;" > [source: https://github.com/rstudio/cheatsheets/raw/master/package-development.pdf ] </div>
+
+
+
+DESCRIPTION (1)
+========================================================
+
+## Motivation
+
+Mandatory DCF file that storages the package metadata. Mainly specifies dependencies, who can use it (license) and whom to contact in case of problems.
+
+**Tip:** use a `README.md` (http://r-pkgs.had.co.nz/release.html#readme) and/or a package doucmentation file to add more detailled infos about the package.
+
+
+## Structure
+
+<div class="sourceCode"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span class="fu"><font color="#8A0868">fieldName: </font></span>value</code></pre></div>
+
+**Note:** indentation needed if spanned on multiple lines
+
+
+
+### Title and description
+Will appear on CRAN
+
+<code class="sourceCode yaml"><span class="fu"><font color="#8A0868">Title </font></span></code> is a one line description of the package
+<code class="sourceCode yaml"><span class="fu"><font color="#8A0868">Description </font></span></code> multiple sentences short description of the package.
+
+
+
+### Version
+
+### Authors
+
+
+### License
+
+
+
+#### LazyData
+
+
+
+
+
+
+
+DESCRIPTION (2)
+========================================================
+
+### Excerpt from moviesdemo/DESCRIPION
+
+<div class="sourceCode"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span class="fu"><font color="#8A0868">Package: </font></span>moviesdemo
+<span class="fu"><font color="#8A0868">Type: </font></span>What the Package Does (Title Case)
+<span class="fu"><font color="#8A0868">Version: </font></span>0.0.0.9000
+<span class="fu"><font color="#8A0868">Authors@R: </font></span>c(
+    person("Joris", "Chau", email = "j.chau@uclouvain.be", role = c("aut", "cre")),
+    person("Manon", "Martin", email = "manon.martin@uclouvain.be", role = "aut"))
+<span class="fu"><font color="#8A0868">Description: </font></span>More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+<span class="fu"><font color="#8A0868">License: </font></span>CC0
+<span class="fu"><font color="#8A0868">URL: </font></span>https://github.com/JorisChau/moviesdemo
+<span class="fu"><font color="#8A0868">Encoding: </font></span>UTF-8
+<span class="fu"><font color="#8A0868">Depends: </font></span>R (>= 3.3.1)
+<span class="fu"><font color="#8A0868">LazyData: </font></span>true
+<span class="fu"><font color="#8A0868">Imports: </font></span>shiny
+<span class="fu"><font color="#8A0868">RoxygenNote: </font></span>6.0.1
+<span class="fu"><font color="#8A0868">Suggests: </font></span>
+    knitr,
+    rmarkdown,
+    testthat
+<span class="fu"><font color="#8A0868">VignetteBuilder: </font></span>knitr
+</code></pre></div>
+
+
+
+Dependencies in DESCRIPTION
+========================================================
+Comma separated list of needed package names.
+
+* <code class="sourceCode yaml"><span class="fu"><font color="#8A0868">Imports: </font></span></code>
+Packages listed must be present and are installed if not.
+
+**Tip**: ! `Imports` will only ensure that it is *installed* and will not *attach* it <br />
+=> Best practice:  refer explicitly to external functions with `package::function()`.
+
+
+* <code class="sourceCode yaml"><span class="fu"><font color="#8A0868">Suggests: </font></span></code>
+The packages are not required for installation but can be used (e.g. for datasets, to run tests or build vignettes, specific function needing the package).
+
+Test if a suggested package is available for a specific function `FUN`:
+
+
+```r
+FUN <- function(x) {
+  if (!requireNamespace("suggestedPackage", quietly = TRUE)) {
+    stop("suggestedPackage installation is necessary for function FUN")
+  }
+}
+```
+
+
+
+
+
+* <code class="sourceCode yaml"><span class="fu"><font color="#8A0868">Depends: </font></span></code> Used to require a specific version of R i.e. require a version greater than or equal to the currently used version.
+
+
+**Notes:**
+* Alternative setting of dependencies: namespace imports
+* Versioning to specify a minimum package version: `Suggests: knitr(>=1.17)`
+Packages listed must be present and are installed if not.
+
+
+
+R scripts
+========================================================
+
+* Located in the `R` directory
+
+**Tip** for R functions development: use `devtools::load_all()` to avoid a re-installation
+
+<img src="pictures/load_all.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" width="55%" style="display: block; margin: auto;" />
+
+
+
+Help files
+========================================================
+### Motivations
+R documentation
+
+
+
+* Located in the `man` directory
+* Slightly different between packages, functions or datasets descriptions
+* RStudio documentation tools include: **Preview** command, spell-checking, and Roxygen aware editing
+
+### Help file format (`.Rd`) \~ LaTeX
+
+
+### Excerpt from moviesdemo/man/advise.good.movie.Rd
+
+```r
+\name{advise.good.movie}
+\alias{advise.good.movie}
+\title{Advise movies based on another movie}
+\usage{
+advise.good.movie(similar_to, how_many, ...)
+}
+\arguments{
+\item{similar_to}{character, movie title from the database.}
+\item{how_many}{integer, how many movies to advise.}
+\item{...}{additional arguments.}
+}
+\description{
+Documentation...
+}
+```
+
+
+Write help files with the roxygen2 package (1)
+========================================================
+
+### Motivations
+sta
+
+
+
+### Workflow
+* Write Roxygenize comments always starting with `'#` either in a new R script (package or data) or at the top of the R script already containing the function
+*
+* Generate the documentation:
+`devtools::document(".")` or `Ctrl+Shift+D`
+
+
+### Useful fields
+
+
+Write help files with the roxygen2 package (2)
+========================================================
+
+### Excerpt from moviesdemo/R/advise.R
+
+```r
+#' Advise movies based on another movie
+#'
+#' Documentation...
+#'
+#' @param similar_to character, movie title from the database.
+#' @param how_many integer, how many movies to advise.
+#' @param ... additional arguments.
+#'
+#' @export
+
+advise.good.movie <- function(similar_to, how_many, ...){
+
+# ---- advise.good.movie function body ----
+
+  }
+```
+
+
+
+
+
+
 NAMESPACE*
 ========================================================
 
@@ -56,7 +383,7 @@ nrow
 ```
 # function (x) 
 # dim(x)[1L]
-# <bytecode: 0x562e3b2e8450>
+# <bytecode: 0x7fbcb5cbbd90>
 # <environment: namespace:base>
 ```
 
@@ -110,7 +437,7 @@ NAMESPACE
 
 * In RStudio: `Build > Configure Build Tools > Build Tools`
 
-<img src="pictures/Fig3.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="55%" style="display: block; margin: auto;" />
+<img src="pictures/Fig3.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="55%" style="display: block; margin: auto;" />
 
 
 Data
@@ -306,13 +633,6 @@ A <- matrix(complex(real = rnorm(4), imaginary = rnorm(4)), nrow = 2)
 microbenchmark::microbenchmark(mExp_R(A), mExp_C(A))
 ```
 
-```
-# Unit: microseconds
-#       expr     min       lq      mean   median       uq      max neval
-#  mExp_R(A) 229.675 236.1565 328.36833 242.0670 257.8125 4586.144   100
-#  mExp_C(A)  15.894  17.7080  32.68072  23.6085  25.4180  935.461   100
-```
-
 Git and GitHub
 =========================================================
 
@@ -344,7 +664,7 @@ Git and GitHub
 
 * New **Git** pane tracks changes in the code:
 
-<img src="pictures/Fig4.png" title="plot of chunk unnamed-chunk-17" alt="plot of chunk unnamed-chunk-17" width="100%" style="display: block; margin: auto;" />
+<img src="pictures/Fig4.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="100%" style="display: block; margin: auto;" />
 
 Git and GitHub
 =========================================================
@@ -361,7 +681,7 @@ Git and GitHub
 * Roll back changes to previous commit by clicking on `More > Revert` (cannot undo!)
 * You can also undo changes to part of a file or individual lines or changes that occured before the last commit, see e.g. http://r-pkgs.had.co.nz/git.html for more details
 
-<img src="pictures/Fig5.png" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" width="100%" style="display: block; margin: auto;" />
+<img src="pictures/Fig5.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="100%" style="display: block; margin: auto;" />
 
 Git and GitHub
 =========================================================
@@ -397,7 +717,7 @@ Checking package
 * **NOTE**: mild problems, if you submit to CRAN try to eleminate all notes, if not explain why the note is not a problem in CRAN submission comments.
 
 ### Example output `devtools::check()`
-<img src="pictures/Fig6.png" title="plot of chunk unnamed-chunk-20" alt="plot of chunk unnamed-chunk-20" width="60%" style="display: block; margin: auto;" />
+<img src="pictures/Fig6.png" title="plot of chunk unnamed-chunk-28" alt="plot of chunk unnamed-chunk-28" width="60%" style="display: block; margin: auto;" />
 
 Checking package and Release
 =========================================================
@@ -430,7 +750,7 @@ Checking package and Release
 
 ### Example output Travis (linux, osx)
 
-<img src="pictures/Fig8.png" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" width="100%" style="display: block; margin: auto;" />
+<img src="pictures/Fig8.png" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="100%" style="display: block; margin: auto;" />
 
 Checking package and Release
 =========================================================
@@ -442,7 +762,7 @@ Checking package and Release
 * Submit to CRAN with `devtools::release()`
 
 After acceptance CRAN builds binary packages for each platform (may uncover further errors).
-<img src="pictures/Fig7.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="50%" style="display: block; margin: auto;" />
+<img src="pictures/Fig7.png" title="plot of chunk unnamed-chunk-31" alt="plot of chunk unnamed-chunk-31" width="50%" style="display: block; margin: auto;" />
 
 Shiny applications
 =========================================================
