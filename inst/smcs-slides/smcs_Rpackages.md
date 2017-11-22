@@ -523,7 +523,7 @@ nrow
 ```
 # function (x) 
 # dim(x)[1L]
-# <bytecode: 0x7fcce2ca6f90>
+# <bytecode: 0x7ff26c13b790>
 # <environment: namespace:base>
 ```
 
@@ -771,6 +771,13 @@ mExp_R <- function(A){
 ## Computation times
 A <- matrix(complex(real = rnorm(4), imaginary = rnorm(4)), nrow = 2)
 microbenchmark::microbenchmark(mExp_R(A), mExp_C(A))
+```
+
+```
+# Unit: microseconds
+#       expr     min       lq      mean   median       uq      max neval
+#  mExp_R(A) 151.016 156.0065 215.16469 159.6245 166.0845 3145.973   100
+#  mExp_C(A)   7.004   8.1235  19.76262  12.1295  14.5255  746.703   100
 ```
 
 Git and GitHub

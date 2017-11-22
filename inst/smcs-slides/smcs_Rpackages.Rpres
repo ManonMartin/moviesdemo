@@ -730,7 +730,7 @@ class: small-code
 Speed up your code by including `C` or `C++` code in your package with `Rcpp` (and `RcppArmadillo` or `RcppEigen`). For more details, see e.g. http://adv-r.had.co.nz/Rcpp.html or http://r-pkgs.had.co.nz/src.html.
 
 ### To illustrate
-```{r, eval=FALSE}
+```{r}
 ## write C++ function
 Rcpp::cppFunction(depends = "RcppArmadillo", 'arma::cx_mat mExp_C(arma::cx_mat A) {
   arma::cx_mat A_exp = arma::expmat(A);
