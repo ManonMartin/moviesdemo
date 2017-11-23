@@ -29,7 +29,7 @@ Demo package
 
 ### Clone `moviesdemo` to your PC
 
-Install **Git** To clone or download (not install!) the package to your local PC:
+Install **Git** to clone or download (not install) the package to your local PC:
 
 * on Windows: http://git-scm.com/download/win
 * on OS X: http://git-scm.com/download/mac
@@ -506,7 +506,7 @@ nrow
 ```
 # function (x) 
 # dim(x)[1L]
-# <bytecode: 0x7ff17cb77790>
+# <bytecode: 0x5577dd6ff6c8>
 # <environment: namespace:base>
 ```
 
@@ -738,29 +738,199 @@ Speed up your code by including `C` or `C++` code in your package with `Rcpp` (a
 
 ### To illustrate
 
+```r
+## write C++ function
+Rcpp::cppFunction(depends = "RcppArmadillo", 'arma::cx_mat mExp_C(arma::cx_mat A) {
+  arma::cx_mat A_exp = arma::expmat(A);
+  return A_exp;
+}')
 
+## write R function
+mExp_R <- function(A){
+  e <- eigen(A)
+  e$vectors %*% diag(exp(e$values)) %*% solve(e$vectors)
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## Computation times
+A <- matrix(complex(real = rnorm(4), imaginary = rnorm(4)), nrow = 2)
+microbenchmark::microbenchmark(mExp_R(A), mExp_C(A))
+```
 
 ```
-Error in sourceCpp(code = code, env = env, rebuild = rebuild, cacheDir = cacheDir,  : 
-  Error 1 occurred building shared library.
+# Unit: microseconds
+#       expr     min      lq      mean   median       uq      max neval
+#  mExp_R(A) 227.720 232.628 313.36491 236.5130 252.7160 4192.117   100
+#  mExp_C(A)  15.841  17.674  40.64668  22.7795  24.5665 1130.268   100
 ```
+
+Git and GitHub
+=========================================================
+
+### Motivation
+**Git** is a version control system that tracks changes in your code and allows to undo mistakes. **GitHub** is a website where you can share code and work together with others via e.g. pull requests or track issues.
+
+* Installing an R-package from GitHub is (very) easy:
+
+
+```r
+devtools::install_github("JorisChau/moviesdemo")
+```
+
+### Set up Git/GitHub with RStudio
+* Install Git
+* In a Git shell, configure username and email, (check with `git config --global --list`)
+
+```r
+git config --global user.name "YOUR FULL NAME"
+git config --global user.email "YOUR EMAIL ADDRESS"
+```
+* Create a GitHub account on https://github.com (use the same email as above)
+* If needed, generate a SSH key, see http://r-pkgs.had.co.nz/git.html for details
+* In RStudio: `Tools > Project Options > Git/SVN` change Version Control System to `Git`
+* In a Git shell, run `git init` and restart RStudio ...
+
+Git and GitHub
+=========================================================
+
+* New **Git** pane tracks changes in the code:
+
+<img src="pictures/Fig4.png" title="plot of chunk unnamed-chunk-33" alt="plot of chunk unnamed-chunk-33" width="100%" style="display: block; margin: auto;" />
+
+Git and GitHub
+=========================================================
+
+### To create a new commit (often)
+
+* Save changes and open `commit` window in Git pane
+* Stage (select) files for inclusion in commit
+* Write a (meaningful) commit message and commit
+
+**Tip**: Add files you do not want to include to `.gitignore` (e.g. temporary folders or large files).
+
+### Undo mistakes
+* Roll back changes to previous commit by clicking on `More > Revert` (cannot undo!)
+* You can also undo changes to part of a file or individual lines or changes that occured before the last commit, see e.g. http://r-pkgs.had.co.nz/git.html for more details
+
+<img src="pictures/Fig5.png" title="plot of chunk unnamed-chunk-34" alt="plot of chunk unnamed-chunk-34" width="100%" style="display: block; margin: auto;" />
+
+Git and GitHub
+=========================================================
+
+### Setup remote repo GitHub
+* Create a new repo on Github: https://github.com/new with the same name as the package and package title as repo description
+* Follow instructions from GitHub, similar to (Git shell):
+
+```r
+git remote add origin https://github.com/JorisChau/moviesdemo.git
+git push -u origin master
+```
+(First line assigns remote repo to `origin`. Second line **pushes** (publishes) local repo `master` to remote repo `origin`).
+
+### Synchronizing with GitHub
+* Commit locally until ready to push
+* Press **Push** in Git pane
+* Go to GitHub page and verify modifications
+
+Go to, for instance, http://r-pkgs.had.co.nz/git.html to learn how to work together with others using Git + GitHub (e.g. *branches*, *pull requests*, *tracking issues*, etc.).
+
+Checking package
+=========================================================
+
+### Workflow
+* Run `devtools::check()` or press `Ctrl/Cmd + Shift + E`
+* Fix errors/warnings/notes
+* Repeat until there are no more errors/warnings/notes
+
+### Check messages
+* **ERROR**: severe problem that needs to be fixed in any case
+* **WARNING**: problems that must be fixed if you want to submit to CRAN (or e.g. Bioconductor)
+* **NOTE**: mild problems, if you submit to CRAN try to eleminate all notes, if not explain why the note is not a problem in CRAN submission comments.
+
+### Example output `devtools::check()`
+<img src="pictures/Fig6.png" title="plot of chunk unnamed-chunk-36" alt="plot of chunk unnamed-chunk-36" width="60%" style="display: block; margin: auto;" />
+
+Checking package and Release
+=========================================================
+
+To release package on CRAN, the package need to build (without errors/warnings) on all major platforms. If you do not have access to different operating systems yourself:
+
+* Check on Windows with win-builder https://win-builder.r-project.org/
+* Check on Linux/OS X with Travis
+
+### Setup Travis
+* Run `devtools::use_travis()` to set up basic `travis.yaml` configuration
+
+```r
+## Example travis.yaml config file
+language: R
+warnings_are_errors: false
+sudo: false
+cache: packages
+os:
+  - linux
+  - osx
+notifications:
+  email: false
+```
+* Go to https://travis-ci.org/ and enable Travis for repo you want to test
+* Push to GitHub and check build results on Travis website
+
+Checking package and Release
+=========================================================
+
+### Example output Travis (linux, osx)
+
+<img src="pictures/Fig8.png" title="plot of chunk unnamed-chunk-38" alt="plot of chunk unnamed-chunk-38" width="100%" style="display: block; margin: auto;" />
+
+Checking package and Release
+=========================================================
+
+### CRAN Release
+* Verify that the package passes `devtools::check()` on the major platforms (windows, linux, osx) and you adhere to CRAN policies
+* Change the version number in `DESCRIPTION` and update `README.md`, `NEWS.md`, `cran-comments.md`
+* Be aware of backward compatibility, see http://r-pkgs.had.co.nz/release.html
+* Submit to CRAN with `devtools::release()`
+
+After acceptance CRAN builds binary packages for each platform (may uncover further errors).
+<img src="pictures/Fig7.png" title="plot of chunk unnamed-chunk-39" alt="plot of chunk unnamed-chunk-39" width="50%" style="display: block; margin: auto;" />
+
+Shiny applications
+=========================================================
+class: small-code
+
+### Motivation
+In addition to vignettes, it may be useful (not always!) to interactively demonstrate the package functionalities with an R shiny application, e.g. http://jchau.shinyapps.io/moviesdemo
+
+### Host Shiny app online
+
+* Publish Shiny app to public server (e.g. http://shinyapps.io) via the `Deploy App` button
+* Deployed Shiny app can fetch R packages from CRAN or GitHub
+* Include link to in `README.md` or `DESCRIPTION` file
+
+### Include Shiny app in package
+
+* add `Imports: shiny` to `DESCRIPTION` file
+* Place Shiny app in `inst/shiny-examples/myapp/` and add `runapp.R` to `R/`
+* Run app from within R via `moviesdemo::runMovieApp()`. Excerpt from `runapp.R`:
+
+
+```r
+runMovieApp <- function() {
+  appDir <- system.file("shiny-examples", "myapp", package = "moviesdemo")
+  if (appDir == ""){
+    stop("Could not find example directory. Try re-installing `moviesdemo`.", call. = FALSE)
+  }
+  shiny::runApp(appDir, display.mode = "normal")
+}
+```
+
+
+Other RStudio facilities
+=========================================================
+
+RMarkdown
+Shiny
+KnitR
+
+
+https://www.rstudio.com/products/rpackages/
