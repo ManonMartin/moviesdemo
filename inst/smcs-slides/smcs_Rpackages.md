@@ -7,10 +7,51 @@
 SMCS course: write and publish R-packages with RStudio
 ========================================================
 author: Manon Martin & Joris Chau
-date: November 2017
-width: 1600
-height: 1000
+date: 28 November 2017
+width: 1700
+height: 1100
 font-family: 'Helvetica'
+
+Introduction
+========================================================
+
+
+
+### Getting started
+
+* RStudio
+* Demo R-package (`moviesdemo`) and working with existing packages
+* `devtools` and creating a package from scratch
+
+### Package structure and components
+
+* Package metadata (`DESCRIPTION` and `.Rbuildignore`)
+* Code (`.R` files in `R/`)
+* Object documentation with Roxygen2 (`.Rd` files in `man/`)
+* Imports and exports with namespaces (`NAMESPACE`)
+* Data (`data/`)
+* Automated testing (`tests/`)
+* Vignettes (`vignetes/`)
+* Compiled C++ code (`src/`)
+* Version control with Git and GitHub
+* Check and release your package
+* Shiny apps (`inst/`)
+
+RStudio
+========================================================
+
+* RStudio is the most popular interface for R and R-package development with RStudio
+is (relatively) easy relying on `devtools`
+
+* RStudio is very versatile. Besides creating/publishing R-packages, RStudio makes it easy to:
+  + create Markdown documents, webpages, or slides with RMarkdown + KnitR (e.g. this presentation)
+  + create LaTeX documents or slides with RSweave + KnitR
+  + create and deploy interactive (web)-applications with R-Shiny
+  + setup version control with Git + GitHub
+  + and more, go to https://www.rstudio.com/products/rpackages/ for more info
+
+<img src="pictures/Fig0.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="70%" style="display: block; margin: auto;" />
+
 
 Demo package
 ========================================================
@@ -40,15 +81,13 @@ Install **Git** to clone or download (not install) the package to your local PC:
 Clone existing Git repository (1)
 ========================================================
 
-
-
 * In Rstudio: `File > New Project > Version Control > Git`
 * Repository URL: `https://github.com/JorisChau/moviesdemo.git`
 * Select path where to clone package on local pc
 
 Note: we do **not** install the package, we *only* download files from Github to local pc.
 
-<img src="pictures/Fig1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="55%" style="display: block; margin: auto;" />
+<img src="pictures/Fig1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="55%" style="display: block; margin: auto;" />
 
 Clone existing Git repository (2)
 ========================================================
@@ -57,14 +96,14 @@ Clone existing Git repository (2)
 * In RStudio: `File > New Project > Existing Directory`
 * Select path to cloned package on local pc
 
-<img src="pictures/Fig2.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="60%" style="display: block; margin: auto;" />
+<img src="pictures/Fig2.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" width="60%" style="display: block; margin: auto;" />
 
 Work with existing R packages
 ========================================================
 
-Published packages (13/11/17): 11.809 on CRAN and 1.476 on Bioconductor
+Published packages (21/11/17): 11.877 on CRAN and 1.476 on Bioconductor
 
-### Install and load a R package
+### Install and load an R package
 
 ```r
 # ------- INSTALL ---------------
@@ -81,69 +120,66 @@ library("x")
 
 &nbsp;
 
-### Examples of R packages
+### Examples of packages
 
 * https://github.com/ManonMartin/MBXUCL
 * https://cran.r-project.org/web/packages/pdSpecEst/
 
 
- 5 ≠ package states
+ 5 package states
 ========================================================
-* **source**: what we are currently working on during package development
-* **bundled**: compressed single file (`.tar.gz.`); intermediary state  (Windows/Mac) or for Linux distribution
-* **binary**: compressed single file used to distribute your package (very different internal structure); platform specific: `.zip` (Windows), `.tgz` (Mac)
+* **source**: what we are currently working on during the package development
+* **bundled**: compressed single file (`.tar.gz.`); intermediary state  (Windows/Mac) or used for Linux distribution
+* **binary**: compressed single file used to distribute your package (very different internal structure); platform-specific: `.zip` (Windows), `.tgz` (Mac)
 * **installed**: decompressed package into a package library (i.e. directory containing installed packages)
 * **in-memory**: loaded package, required to be used
 
-<img src="pictures/PackageStates.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="40%" style="display: block; margin: auto;" />
+<img src="pictures/PackageStates.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" width="40%" style="display: block; margin: auto;" />
 <div style="text-align: right; font-size:0.5em;" > [source: https://github.com/rstudio/cheatsheets/raw/master/package-development.pdf ] </div>
 
 
-Why you should write a R package
+Why you should write an R package
 ========================================================
 ## PROS
 
-### Automation is key for time-saving
+### Good practices and automation are key for time-saving
 * Avoid coding errors
-* Functions, data etc. documentation
+* Functions, data and package documentation
 * Conventions and tools standardisation
 * Available tests and checks
 
 ### Portable code
-* Easier to share code within your team and/or carry out a group work
+* Easier to share your codes within your team or carry out a group work (with GitHub)
 * Open your code to the R community (extra testing for bugs, meet new needs, etc.)
 * Publish and value your coding work (along with your articles)
-* For Shiny app deployment hosted online (GitHub)
-
-&nbsp;
-
+* Deploy Shiny app hosted online (with GitHub)
 
 ## CONS
 * More upstream work
 * must pass checks and meet the standards
 
 
-The `devtools` R package
+The "devtools" R package
 ========================================================
 ### Motivations
-*= Tools to make Developing R Packages Easier*
+*= Tools to make R packages development easier*
 * Simplifies and automates common development tasks
 * Encapsulated and developed in parallel with RStudio
 * Incorporates the best practices of package development
 
 &nbsp;
 
-### Few useful `devtools` functions
-  * `create("path-to/package-name")`: Creates a new package with the directory structures
-  * `load_all()`: Loads a package in memory
-  * `document()`: Uses Roxygen to document a package
+### Useful `devtools` functions
+  * `create("path-to/package-name")`: Creates a new package skeleton
+  * `load_all()`:  Loads a package in memory
+  * `document()`: Uses `roxygen2` to document a package
   * `check()`: Checks and builds and  a source package
   * `build()`: Builds a source package
-  * `test()`: Executes the `test_that` tests in a package
+  * `test()`: Executes the `test_that` tests
 
 
 
-more info: https://cran.r-project.org/web/packages/devtools/
+More info: https://cran.r-project.org/web/packages/devtools/
 
 
 The RStudio interface and start of a package
@@ -151,20 +187,19 @@ The RStudio interface and start of a package
 
 ### Useful RStudio facilities
 * Only within a project!
-* **Build** (tools for building and testing packages) and **Git** (Git and GitHub version control system) **tab panes**
+* **Build** (tools for building and testing packages) and **Git** (Git and GitHub version control system) **tabs**
 
+### Package creation workflow
+* `File > New Project > New Directory > R package`  (or  `devtools::create()`)
 
-### Initiate a package
-* `File > New Project > New Directory > R package`  (or  `devtools::create("path-to/package-name")`)
-
-<img src="pictures/RPackageCreation.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" width="30%" style="display: block; margin: auto;" />
+<img src="pictures/RPackageCreation.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="30%" style="display: block; margin: auto;" />
 
 
 * Set the package name and the project directory
 * Select source files (= R scripts) (optionnal)
 * Create a git repository (optionnal)
 
-**Note**: The choice of the name is important for your package visibility!! Name it with letters, numbers and periods; it must start with a letter and cannot end with a period.
+**Note**: The choice of the name is important for your package visibility!! Name it with letters, numbers and periods only. It must start with a letter and cannot end with a period.
 
 Package structure
 ========================================================
@@ -172,11 +207,35 @@ Package structure
 &nbsp;
 &nbsp;
 
-<img src="pictures/PackageStructure.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="65%" style="display: block; margin: auto;" />
+<img src="pictures/PackageStructure.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" width="65%" style="display: block; margin: auto;" />
 <div style="text-align: right">
 (not exhausitive) </div>
 
 <div style="text-align: right; font-size:0.5em;" > [source: https://github.com/rstudio/cheatsheets/raw/master/package-development.pdf ] </div>
+
+
+
+
+The .Rbuildignore file
+========================================================
+
+### Motivation
+Files from the *source* package appearing in `.Rbuildignore` are not included in the *bundled* package
+
+### Best practice
+Use `devtools::use_build_ignore("files")` to generate the regular expression in the `.Rbuildignore` file matching the exact file(s) to be excluded
+
+### Excerpt from .Rbuildignore
+
+
+```r
+^.*\.Rproj$       # R project file
+^\.Rproj\.user$   # temporary files
+^README\.Rmd$     # README.Rmd
+^README-.*\.png$  #
+^\.travis\.yml$   # Travis test
+```
+
 
 
 
@@ -185,30 +244,26 @@ DESCRIPTION (1)
 
 ## Motivation
 
-Mandatory DCF file that storages the package metadata. Mainly specifies dependencies, who can use it (license) and whom to contact in case of problems.
+Mandatory DCF file that stores the package metadata. Specifies dependencies, who can use it (license) and whom to contact in case of problems, etc.
 
 
-## Structure
+## Structure and  main fields
 
 <div class="sourceCode"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span class="fu"><font color="#8A0868">fieldName: </font></span>value</code></pre></div>
 
-<code class="sourceCode yaml"><span class="fu"><font color="#8A0868">Title </font></span></code> is a one line description of the package
+* `Title`:  One line description of the package
+* `Description` : Multiple sentences short description of the package
 
-<code class="sourceCode yaml"><span class="fu"><font color="#8A0868">Description </font></span></code> Multiple sentences short description of the package.
+* `Authors@R` : Package *Authors* (`"aut"`), Creator and package *Maintainer* (`"cre"`), Contributors (`"ctb"`), etc. Comprehensive code list: http://www.loc.gov/marc/relators/relaterm.html
 
-<code class="sourceCode yaml"><span class="fu"><font color="#8A0868">Authors@R </font></span></code> Package *Authors* (`"aut"`), Creator and package *Maintainer* (`"cre"`), Contributors (`"ctb"`), etc. [Comprehensive list](http://www.loc.gov/marc/relators/relaterm.html)
+* `Version` :
+  + Released version: `<major>.<minor>.<patch>`
+  + In-development package: add a 4th component, starts at 0.0.0.9000
 
-<code class="sourceCode yaml"><span class="fu"><font color="#8A0868">Version </font></span></code>
-* Released version: `<major>.<minor>.<patch>`
-* In-development package: 4th component, starts at 0.0.0.9000
-
-<code class="sourceCode yaml"><span class="fu"><font color="#8A0868">License </font></span></code>
-Important for the package release. Explain who and how to use the package (e.g. GPL-3)
+* `License` : Important for the package release. Explain who and how to use the package (e.g. GPL-3)
 A `LICENSE` file can be added for more information.
 
-
-
-<code class="sourceCode yaml"><span class="fu"><font color="#8A0868">LazyData </font></span></code>Set to `TRUE` by default
+* `LazyData` : If `TRUE`, the datasets are lazily loaded
 
 
 
@@ -246,7 +301,7 @@ DESCRIPTION (2)
 
 Dependencies in DESCRIPTION
 ========================================================
-Comma separated list of needed package names.
+Comma separated list of needed package names
 
 * <code class="sourceCode yaml"><span class="fu"><font color="#8A0868">Imports: </font></span></code>
 Packages listed must be present and are installed if not.
@@ -282,49 +337,31 @@ FUN <- function(x) {
 
 
 
-More package documentation
+
+
+R scripts good practices (1)
 ========================================================
-* Create a `README.md`
-
-Suggested structure (from Hadley Wickham):
-
-1. Describe the high-level purpose of the package
-2. An example where the package is applied
-3. Installation instructions
-4. Overview of the main components of the package (a Vignette is more exhaustive!)
-
-&nbsp;
-
-* Package documentation
-
-
-```r
-help("moviesdemo")
-```
-
-
-
-
-R scripts Good practices (1)
-========================================================
-### Functions names
+### Function names
 Should be meaningful and end with `.R`
 
 ### Code style
 * `formatR::tidy_dir()`: automatically reformats R code
-* `lintr::lint_package()`: warns about problems
-* Check conventions for object names, spacing, {}, commenting, indentation, etc. (cf. http://adv-r.had.co.nz/Style.html)
+* `lintr::lint_package()`: warns about potential style, syntax or semantic problems
+* Check http://adv-r.had.co.nz/Style.html for conventions concerning object names, spacing, {}, comments, indentation, etc.
 
 ### Top-level code rules in the scripts
-Never use: `library()` or `require()` packages will not be loaded and modifies the search path; `source()` modifies the current environment
 
-Use carefuly (reset after use): the global `options()`,  the graphical parameter `par()`, all functions modifying default directories (e.g. `.libPaths()`, `setwd()`)
+* Never use : `library()` or `require()` since packages will not be loaded and it modifies the search path; `source()` modifies the current environment
 
-**Tip** for the R functions development workflow: use `devtools::load_all()` to avoid a re-installation
-<img src="pictures/load_all.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" width="55%" style="display: block; margin: auto;" />
+* Use carefuly (reset after use with `on.exit()`): the global `options()`,  the graphical parameter `par()`, all functions modifying default directories (e.g. `.libPaths()`, `setwd()`)
+
+### load_all
+Use `devtools::load_all()` for the R functions development workflow to avoid a re-installation
+
+<img src="pictures/load_all.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" width="55%" style="display: block; margin: auto;" />
 
 
-R scripts Good practices (2)
+R scripts good practices (2)
 ========================================================
 ### Input arguments check
 
@@ -339,16 +376,11 @@ FUN <- function(a, type = c("mean", "median")) {
 
 
 ```r
-FUN(a = c(1, 4, 6, "R", 5, 2, 1) , type="mean")
+FUN(a = c(1, 4, 6, F, 5, 2, 1) , type="mean")
 ```
 
 ```
-# Warning in mean.default(a): argument is not numeric or logical: returning
-# NA
-```
-
-```
-# [1] NA
+# [1] 2.714286
 ```
 
 
@@ -357,9 +389,8 @@ FUN(a = c(1, 4, 6, 5, 5, 2, 1), type="meen")
 ```
 
 
-R scripts (3)
+R scripts good practices (3)
 ========================================================
-## Good practices
 ### Input arguments check
 
 
@@ -377,12 +408,7 @@ FUN <- function(a, type = c("mean", "median")) {
 
 
 ```r
-FUN(a = c(1, 4, 6, "R", 5, 2, 1), type="meen")
-```
-
-```
-# Warning in FUN(a = c(1, 4, 6, "R", 5, 2, 1), type = "meen"): c(1, 4, 6,
-# "R", 5, 2, 1) is not numeric
+FUN(a = c(1, 4, 6, F, 5, 2, 1), type="meen")
 ```
 
 ```
@@ -399,90 +425,116 @@ FUN(a = c(1, 4, 6, 5, 5, 2, 1), type="mean")
 ```
 
 
-Help files
+Object documentation
 ========================================================
-In the `man/` directory
-
 ### Motivations
-R documentation
+Object documentation (available through `help()` function) acting as a dictionnary for the package, the functions and the datasets. Influences the quality of your package ; useful both for package developers and users.
 
-
-
-* Located in the `man` directory
-* Slightly different between packages, functions or datasets descriptions
-* RStudio documentation tools include: **Preview** command, spell-checking, and Roxygen aware editing
-
-### Help file format (`.Rd`) \~ LaTeX
-
+Help file format (`.Rd`) with formatting commands ~ LaTeX
 
 ### Excerpt from moviesdemo/man/advise.good.movie.Rd
-
-```r
-\name{advise.good.movie}
-\alias{advise.good.movie}
-\title{Advise movies based on another movie}
-\usage{
-advise.good.movie(similar_to, how_many, ...)
+<div class="sourceCode"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span class="fu"><font color="#8A0868">\name</font></span>{advise.good.movie}
+<span class="fu"><font color="#8A0868">\alias</font></span>{advise.good.movie}
+<span class="fu"><font color="#8A0868">\title</font></span>{Advise movies based on another movie}
+<span class="fu"><font color="#8A0868">\usage</font></span>{advise.good.movie(similar_to, how_many, draw_scores = FALSE, ...)
 }
-\arguments{
-\item{similar_to}{character, movie title from the database.}
-\item{how_many}{integer, how many movies to advise.}
-\item{...}{additional arguments.}
+<span class="fu"><font color="#8A0868">\arguments</font></span>{
+<span class="fu"><font color="#8A0868">\item</font></span>{similar_to}{character, movie title from the database.}
+<span class="fu"><font color="#8A0868">\item</font></span>{how_many}{integer, how many movies to advise.}
+<span class="fu"><font color="#8A0868">\item</font></span>{draw_scores}{if <font color="#8A0868">\code</font>{TRUE}, draws a barplot with the similarity scores.}
+<span class="fu"><font color="#8A0868">\item</font></span>{...}{additional arguments.}
 }
-\description{
+<span class="fu"><font color="#8A0868">\value</font></span>{A list with the following elements:
+<span class="fu"><font color="#8A0868">\describe</font></span>{
+  <span class="fu"><font color="#8A0868">\item</font></span>{<font color="#8A0868">\code</font>{selected}}{movie title used to advise other movies}
+  ...
+}
+<span class="fu"><font color="#8A0868">\description</font></span>{
 Documentation...
 }
-```
+</code></pre></div>
 
-
-Write help files with the roxygen2 package (1)
+Writing function help files with Roxygen2 (1)
 ========================================================
 
 ### Motivations
-sta
-
+Easier documentation generation: (1) simplified format (+ .Rd syntax) ; (2) the code and documentation are in a same file => both are updated at the same time ; (3) partly automatically generated by Roxygen, avoiding manual errors.
 
 
 ### Workflow
-* Write Roxygenize comments always starting with `'#` either in a new R script (package or data) or at the top of the R script already containing the function
-*
-* Generate the documentation:
-`devtools::document(".")` or `Ctrl+Shift+D`
+* Install the package `roxygen2`
+* Write Roxygen comments (starting with `#'`) within your `.R` files
+* Run `devtools::document()` to translate your Roxygen comments into a `.Rd` file and update the NAMESPACE (seen later)
+* Preview the documentation (`Preview` button within the `.Rd` file or build and `help()`) and modify/update/correct your comments to improve the documentation
+
+### Structure
+* Introduction block (Mandatory) is text without tag (first sentence: title ; 2nd paragraph: description)
+* Other blocks with tags (main ones):
+  + `@param name description`: describes function parameters
+  + `@examples`: executable R script applying the function, use `\dontrun{}` to avoid errors check
+  + `@return`: describes the outputs of the function
+  + `@export` and `@import` (or `@importFrom`): specifies NAMESPACE imports/exports
 
 
-### Useful fields
-
-@docType
 
 
 
-Write help files with the roxygen2 package (2)
+Writing function help files with Roxygen2 (2)
 ========================================================
-
 ### Excerpt from moviesdemo/R/advise.R
 
 ```r
 #' Advise movies based on another movie
 #'
-#' Documentation...
+#' \code{advise.good.movie} takes as input a movie from the movie database and gives as #' output a number of movies that are similar.
 #'
 #' @param similar_to character, movie title from the database.
 #' @param how_many integer, how many movies to advise.
+#' @param draw_scores if \code{TRUE}, draws a barplot with the similarity scores.
 #' @param ... additional arguments.
 #'
+#' @return A list with the following elements:
+#' \describe{
+#'   \item{\code{selected}}{movie title used to advise other movies}
+#'   \item{\code{to_watch}}{advised movie title(s)}
+#'   \item{\code{movie_ids}}{line number in the \code{movies} database of the advised movie(s)}
+#'   \item{\code{scores}}{similarity scores of the advised movie(s)}
+#' }
+#'
+#' @import graphics
 #' @export
 
 advise.good.movie <- function(similar_to, how_many, ...){
-
 # ---- advise.good.movie function body ----
-
   }
 ```
 
-Help files
+Package documentation
 ========================================================
 
-### Create pdf reference manual
+### Package documentation
+* Roxygen package documentation (usually contained in `<package-name>.R`). Documentation accessed via `help()`  or `package?`
+* Use the `@docType package` tag
+
+&nbsp;
+
+### Other documentations
+
+* Vignette(s) (seen later)
+
+* `README.Rmd` with the following suggested structure (from Hadley Wickham):
+  1. Describe the high-level purpose of the package
+  2. An example where the package is applied
+  3. Installation instructions
+  4. Overview of the main components of the package (a Vignette is more exhaustive!)
+
+
+
+
+
+
+Create the pdf reference manual
+========================================================
 
 In order to create a pdf reference manual from the documentation (`.Rd`) files, you can run in R:
 
@@ -490,6 +542,7 @@ In order to create a pdf reference manual from the documentation (`.Rd`) files, 
 ```r
 system("R CMD Rd2pdf /path/to/package_root")
 ```
+**Tip**: use `.` as your `/path/to/package_root` while working within your R package project
 
 **Note**: if you submit your package to CRAN, the reference manual is created automatically by CRAN, (e.g. https://cran.r-project.org/web/packages/pdSpecEst/pdSpecEst.pdf)
 
@@ -506,7 +559,7 @@ nrow
 ```
 # function (x) 
 # dim(x)[1L]
-# <bytecode: 0x5577dd6ff6c8>
+# <bytecode: 0x564e96a8c6c8>
 # <environment: namespace:base>
 ```
 
@@ -537,13 +590,13 @@ NAMESPACE
 =========================================================
 
 ### Motivation
-The NAMESPACE file decides which functions/methods to **import** from other packages and which functions/methods to **export** from the created package.
+The NAMESPACE file decides which functions/objects to **import** from other packages and which functions/objects to **export** from the created package.
 
 We write **imports** and **exports** through Roxygen comments in our `.R` files.
 
 ### Several useful Roxygen comments
 * `#' @export`, exports functions
-* `#' @importFrom`, imports speficic functions, e.g. `#' @importFrom shiny runApp`
+* `#' @importFrom`, imports speficic functions, e.g. ``#' @importFrom utils browseURL`
 * `#' @import`, imports all functions in a package, e.g. `#' @import shiny`
 * See http://r-pkgs.had.co.nz/namespace.html for more details <br>
 <br>
@@ -715,7 +768,7 @@ Vignettes
 =========================================================
 
 ### Motivation
-Vignettes are long-form tutorials written in Markdown (as this presentation!). Vignettes are more detailed than function documentation. A vignette can e.g. describe how to combine different functions in the package to solve a complex problem. Example:
+Vignettes are long-form tutorials written in Markdown (as this presentation). Vignettes are more detailed than function documentation. A vignette can e.g. describe how to combine different functions in the package to solve a complex problem. Example:
 https://cran.r-project.org/web/packages/pdSpecEst/vignettes/depth_ranktests.html
 
 ### Setup
@@ -758,16 +811,16 @@ microbenchmark::microbenchmark(mExp_R(A), mExp_C(A))
 
 ```
 # Unit: microseconds
-#       expr     min      lq      mean   median       uq      max neval
-#  mExp_R(A) 227.720 232.628 313.36491 236.5130 252.7160 4192.117   100
-#  mExp_C(A)  15.841  17.674  40.64668  22.7795  24.5665 1130.268   100
+#       expr     min       lq      mean   median       uq      max neval
+#  mExp_R(A) 263.449 334.2225 403.59373 339.4565 345.5160 4317.260   100
+#  mExp_C(A)  17.425  28.5715  42.53251  32.3480  35.5825 1050.405   100
 ```
 
 Git and GitHub
 =========================================================
 
 ### Motivation
-**Git** is a version control system that tracks changes in your code and allows to undo mistakes. **GitHub** is a website where you can share code and work together with others via e.g. pull requests or track issues.
+**Git** is a version control system that tracks changes in your code and allows to undo mistakes. **GitHub** is a website where you can share code and work together with others via e.g. pull requests, branches, ...
 
 * Installing an R-package from GitHub is (very) easy:
 
@@ -786,7 +839,7 @@ git config --global user.email "YOUR EMAIL ADDRESS"
 ```
 * Create a GitHub account on https://github.com (use the same email as above)
 * If needed, generate a SSH key, see http://r-pkgs.had.co.nz/git.html for details
-* In RStudio: `Tools > Project Options > Git/SVN` change Version Control System to `Git`
+* In RStudio project: `Tools > Project Options > Git/SVN` change Version Control System to `Git`
 * In a Git shell, run `git init` and restart RStudio ...
 
 Git and GitHub
@@ -843,7 +896,7 @@ Checking package
 
 ### Check messages
 * **ERROR**: severe problem that needs to be fixed in any case
-* **WARNING**: problems that must be fixed if you want to submit to CRAN (or e.g. Bioconductor)
+* **WARNING**: problems that must be fixed if you want to submit to CRAN (or Bioconductor)
 * **NOTE**: mild problems, if you submit to CRAN try to eleminate all notes, if not explain why the note is not a problem in CRAN submission comments.
 
 ### Example output `devtools::check()`
@@ -899,13 +952,13 @@ Shiny applications
 class: small-code
 
 ### Motivation
-In addition to vignettes, it may be useful (not always!) to interactively demonstrate the package functionalities with an R shiny application, e.g. http://jchau.shinyapps.io/moviesdemo
+In addition to vignettes, it may be useful (not always) to interactively demonstrate the package functionalities with an R shiny application, e.g. http://jchau.shinyapps.io/moviesdemo
 
 ### Host Shiny app online
 
 * Publish Shiny app to public server (e.g. http://shinyapps.io) via the `Deploy App` button
 * Deployed Shiny app can fetch R packages from CRAN or GitHub
-* Include link to in `README.md` or `DESCRIPTION` file
+* Include link in `README.md` or `DESCRIPTION` file
 
 ### Include Shiny app in package
 
@@ -925,12 +978,28 @@ runMovieApp <- function() {
 ```
 
 
-Other RStudio facilities
+Now it is your turn!
 =========================================================
 
-RMarkdown
-Shiny
-KnitR
+### Start creating an R package from scratch
+
+Using either your own R functions or the `moviesdemo` source files (.R and .rda)
+
+* It should contain at a minimum:
+  + a `DESCRIPTION` file
+  + R scripts with Roxygen comments
+  + exported or internal data in `.rda` format
+
+* Roxygen comments should include at least one package dependency (import) and an executable example.
+
+* Generate the documentation and update your `NAMESPACE`
+* Check and build your package
+
+* Extra steps: include vignettes, tests, generate the pdf manual, add a README.Rmd, ...
+
+&nbsp;
+
+###  Or work on your own *in process* package
 
 
-https://www.rstudio.com/products/rpackages/
+

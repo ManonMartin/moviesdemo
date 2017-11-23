@@ -1,9 +1,12 @@
 #' Movie similarity based on genre
 #'
-#' Documentation...
+#' The similarity of 2 movies A and B is measured based on their
+#' potential common genre.
 #'
 #' @param movie_A character, one movie title from the movie database
 #' @param movie_B character, another movie title from the movie database
+#'
+#' @return A scalar : the similarity based on genre
 #'
 #' @export
 sim.genres <- function(movie_A, movie_B){
@@ -21,10 +24,12 @@ sim.genres <- function(movie_A, movie_B){
 
 #' Movie similarity based on production companies
 #'
-#' Documentation...
+#' The similarity of 2 movies A and B is measured based on their potential common production companies.
 #'
 #' @param movie_A character, one movie title from the movie database
 #' @param movie_B character, another movie title from the movie database
+#'
+#' @return A scalar : the similarity based on production companies
 #'
 #' @export
 sim.producers <- function(movie_A, movie_B){

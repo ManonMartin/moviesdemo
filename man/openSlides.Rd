@@ -7,6 +7,5 @@
 openSlides()
 }
 \description{
-This function opens the slides of the SMCS course on creating and publishing
-your R package with RStudio.
+This function opens the course slides.
 }

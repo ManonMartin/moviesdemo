@@ -11,6 +11,9 @@ sim.producers(movie_A, movie_B)
 
 \item{movie_B}{character, another movie title from the movie database}
 }
+\value{
+A scalar : the similarity based on production companies
+}
 \description{
-Documentation...
+The similarity of 2 movies A and B is measured based on their potential common production companies.
 }
