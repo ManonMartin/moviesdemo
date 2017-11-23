@@ -4,14 +4,25 @@
 \alias{advise.good.movie}
 \title{Advise movies based on another movie}
 \usage{
-advise.good.movie(similar_to, how_many, ...)
+advise.good.movie(similar_to, how_many, draw_scores = FALSE, ...)
 }
 \arguments{
 \item{similar_to}{character, movie title from the database.}
 
 \item{how_many}{integer, how many movies to advise.}
 
+\item{draw_scores}{if \code{TRUE}, draws a barplot with the similarity scores.}
+
 \item{...}{additional arguments.}
+}
+\value{
+A list with the following elements:
+\describe{
+  \item{\code{selected}}{movie title used to advise other movies}
+  \item{\code{to_watch}}{advised movie title(s)}
+  \item{\code{movie_ids}}{line number in the \code{movies} database of the advised movie(s)}
+  \item{\code{scores}}{similarity scores of the advised movie(s)}
+}
 }
 \description{
 Documentation...

@@ -11,6 +11,10 @@ sim.genres(movie_A, movie_B)
 
 \item{movie_B}{character, another movie title from the movie database}
 }
+\value{
+A scalar : the similarity based on genre
+}
 \description{
-Documentation...
+The similarity of 2 movies A and B is measured based on their
+potential common genre.
 }
