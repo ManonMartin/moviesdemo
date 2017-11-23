@@ -486,7 +486,8 @@ Writing function help files with Roxygen2 (2)
 ```r
 #' Advise movies based on another movie
 #'
-#' \code{advise.good.movie} takes as input a movie from the movie database and gives as #' output a number of movies that are similar.
+#' \code{advise.good.movie} takes as input a movie from the movie database and gives as
+#' output a number of movies that are similar.
 #'
 #' @param similar_to character, movie title from the database.
 #' @param how_many integer, how many movies to advise.
@@ -559,7 +560,7 @@ nrow
 ```
 # function (x) 
 # dim(x)[1L]
-# <bytecode: 0x564fa20876c8>
+# <bytecode: 0x55e9d4f096c8>
 # <environment: namespace:base>
 ```
 
@@ -811,9 +812,9 @@ microbenchmark::microbenchmark(mExp_R(A), mExp_C(A))
 
 ```
 # Unit: microseconds
-#       expr     min       lq      mean   median       uq      max neval
-#  mExp_R(A) 224.424 229.7995 319.91826 234.5925 251.6470 4419.353   100
-#  mExp_C(A)  15.442  16.6610  31.95111  21.9050  24.0925 1055.890   100
+#       expr     min       lq      mean   median      uq      max neval
+#  mExp_R(A) 323.721 331.0765 417.26786 333.6685 336.661 6839.693   100
+#  mExp_C(A)  25.515  27.0155  48.60158  31.3895  33.017 1373.861   100
 ```
 
 Git and GitHub
