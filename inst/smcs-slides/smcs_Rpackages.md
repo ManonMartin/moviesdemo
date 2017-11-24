@@ -12,6 +12,47 @@ width: 1700
 height: 1100
 font-family: 'Helvetica'
 
+Introduction
+========================================================
+
+
+
+### Getting started
+
+* RStudio
+* Demo R-package (`moviesdemo`) and working with existing packages
+* `devtools` and creating a package from scratch
+
+### Package structure and components
+
+* Package metadata (`DESCRIPTION` and `.Rbuildignore`)
+* Code (`.R` files in `R/`)
+* Object documentation with Roxygen2 (`.Rd` files in `man/`)
+* Imports and exports with namespaces (`NAMESPACE`)
+* Data (`data/`)
+* Automated testing (`tests/`)
+* Vignettes (`vignetes/`)
+* Compiled C++ code (`src/`)
+* Version control with Git and GitHub
+* Check and release your package
+* Shiny apps (`inst/`)
+
+RStudio
+========================================================
+
+* RStudio is the most popular interface for R and R-package development with RStudio
+is (relatively) easy relying on `devtools`
+
+* RStudio is very versatile. Besides creating/publishing R-packages, RStudio makes it easy to:
+  + create Markdown documents, webpages, or slides with RMarkdown + KnitR (e.g. this presentation)
+  + create LaTeX documents or slides with RSweave + KnitR
+  + create and deploy interactive (web)-applications with R-Shiny
+  + setup version control with Git + GitHub
+  + and more, go to https://www.rstudio.com/products/rpackages/ for more info
+
+<img src="pictures/Fig0.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="70%" style="display: block; margin: auto;" />
+
+
 Demo package
 ========================================================
 
@@ -29,7 +70,7 @@ Demo package
 
 ### Clone `moviesdemo` to your PC
 
-Install **Git** To clone or download (not install!) the package to your local PC:
+Install **Git** to clone or download (not install) the package to your local PC:
 
 * on Windows: http://git-scm.com/download/win
 * on OS X: http://git-scm.com/download/mac
@@ -40,15 +81,13 @@ Install **Git** To clone or download (not install!) the package to your local PC
 Clone existing Git repository (1)
 ========================================================
 
-
-
 * In Rstudio: `File > New Project > Version Control > Git`
 * Repository URL: `https://github.com/JorisChau/moviesdemo.git`
 * Select path where to clone package on local pc
 
 Note: we do **not** install the package, we *only* download files from Github to local pc.
 
-<img src="pictures/Fig1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="55%" style="display: block; margin: auto;" />
+<img src="pictures/Fig1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="55%" style="display: block; margin: auto;" />
 
 Clone existing Git repository (2)
 ========================================================
@@ -57,7 +96,7 @@ Clone existing Git repository (2)
 * In RStudio: `File > New Project > Existing Directory`
 * Select path to cloned package on local pc
 
-<img src="pictures/Fig2.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="60%" style="display: block; margin: auto;" />
+<img src="pictures/Fig2.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" width="60%" style="display: block; margin: auto;" />
 
 Work with existing R packages
 ========================================================
@@ -87,7 +126,7 @@ library("x")
 * https://cran.r-project.org/web/packages/pdSpecEst/
 
 
- 5 ≠ package states
+ 5 package states
 ========================================================
 * **source**: what we are currently working on during the package development
 * **bundled**: compressed single file (`.tar.gz.`); intermediary state  (Windows/Mac) or used for Linux distribution
@@ -95,7 +134,7 @@ library("x")
 * **installed**: decompressed package into a package library (i.e. directory containing installed packages)
 * **in-memory**: loaded package, required to be used
 
-<img src="pictures/PackageStates.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="40%" style="display: block; margin: auto;" />
+<img src="pictures/PackageStates.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" width="40%" style="display: block; margin: auto;" />
 <div style="text-align: right; font-size:0.5em;" > [source: https://github.com/rstudio/cheatsheets/raw/master/package-development.pdf ] </div>
 
 
@@ -115,15 +154,12 @@ Why you should write an R package
 * Publish and value your coding work (along with your articles)
 * Deploy Shiny app hosted online (with GitHub)
 
-
-
-
 ## CONS
 * More upstream work
 * must pass checks and meet the standards
 
 
-The `devtools` R package
+The "devtools" R package
 ========================================================
 ### Motivations
 *= Tools to make R packages development easier*
@@ -156,7 +192,7 @@ The RStudio interface and start of a package
 ### Package creation workflow
 * `File > New Project > New Directory > R package`  (or  `devtools::create()`)
 
-<img src="pictures/RPackageCreation.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" width="30%" style="display: block; margin: auto;" />
+<img src="pictures/RPackageCreation.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="30%" style="display: block; margin: auto;" />
 
 
 * Set the package name and the project directory
@@ -171,7 +207,7 @@ Package structure
 &nbsp;
 &nbsp;
 
-<img src="pictures/PackageStructure.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="65%" style="display: block; margin: auto;" />
+<img src="pictures/PackageStructure.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" width="65%" style="display: block; margin: auto;" />
 <div style="text-align: right">
 (not exhausitive) </div>
 
@@ -322,7 +358,7 @@ Should be meaningful and end with `.R`
 ### load_all
 Use `devtools::load_all()` for the R functions development workflow to avoid a re-installation
 
-<img src="pictures/load_all.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" width="55%" style="display: block; margin: auto;" />
+<img src="pictures/load_all.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" width="55%" style="display: block; margin: auto;" />
 
 
 R scripts good practices (2)
@@ -418,7 +454,7 @@ Documentation...
 }
 </code></pre></div>
 
-Writing function help files with `roxygen2` (1)
+Writing function help files with Roxygen2 (1)
 ========================================================
 
 ### Motivations
@@ -443,14 +479,15 @@ Easier documentation generation: (1) simplified format (+ .Rd syntax) ; (2) the 
 
 
 
-Writing function help files with `roxygen2` (2)
+Writing function help files with Roxygen2 (2)
 ========================================================
 ### Excerpt from moviesdemo/R/advise.R
 
 ```r
 #' Advise movies based on another movie
 #'
-#' Documentation...
+#' \code{advise.good.movie} takes as input a movie from the movie database and gives as
+#' output a number of movies that are similar.
 #'
 #' @param similar_to character, movie title from the database.
 #' @param how_many integer, how many movies to advise.
@@ -523,7 +560,7 @@ nrow
 ```
 # function (x) 
 # dim(x)[1L]
-# <bytecode: 0x7ff26c13b790>
+# <bytecode: 0x55e9d4f096c8>
 # <environment: namespace:base>
 ```
 
@@ -554,13 +591,13 @@ NAMESPACE
 =========================================================
 
 ### Motivation
-The NAMESPACE file decides which functions/methods to **import** from other packages and which functions/methods to **export** from the created package.
+The NAMESPACE file decides which functions/objects to **import** from other packages and which functions/objects to **export** from the created package.
 
 We write **imports** and **exports** through Roxygen comments in our `.R` files.
 
 ### Several useful Roxygen comments
 * `#' @export`, exports functions
-* `#' @importFrom`, imports speficic functions, e.g. `#' @importFrom shiny runApp`
+* `#' @importFrom`, imports speficic functions, e.g. ``#' @importFrom utils browseURL`
 * `#' @import`, imports all functions in a package, e.g. `#' @import shiny`
 * See http://r-pkgs.had.co.nz/namespace.html for more details <br>
 <br>
@@ -577,7 +614,7 @@ NAMESPACE
 
 * In RStudio: `Build > Configure Build Tools > Build Tools`
 
-<img src="pictures/Fig3.png" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" width="55%" style="display: block; margin: auto;" />
+<img src="pictures/Fig3.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="55%" style="display: block; margin: auto;" />
 
 
 Data
@@ -732,7 +769,7 @@ Vignettes
 =========================================================
 
 ### Motivation
-Vignettes are long-form tutorials written in Markdown (as this presentation!). Vignettes are more detailed than function documentation. A vignette can e.g. describe how to combine different functions in the package to solve a complex problem. Example:
+Vignettes are long-form tutorials written in Markdown (as this presentation). Vignettes are more detailed than function documentation. A vignette can e.g. describe how to combine different functions in the package to solve a complex problem. Example:
 https://cran.r-project.org/web/packages/pdSpecEst/vignettes/depth_ranktests.html
 
 ### Setup
@@ -775,16 +812,16 @@ microbenchmark::microbenchmark(mExp_R(A), mExp_C(A))
 
 ```
 # Unit: microseconds
-#       expr     min       lq      mean   median       uq      max neval
-#  mExp_R(A) 151.016 156.0065 215.16469 159.6245 166.0845 3145.973   100
-#  mExp_C(A)   7.004   8.1235  19.76262  12.1295  14.5255  746.703   100
+#       expr     min       lq      mean   median      uq      max neval
+#  mExp_R(A) 323.721 331.0765 417.26786 333.6685 336.661 6839.693   100
+#  mExp_C(A)  25.515  27.0155  48.60158  31.3895  33.017 1373.861   100
 ```
 
 Git and GitHub
 =========================================================
 
 ### Motivation
-**Git** is a version control system that tracks changes in your code and allows to undo mistakes. **GitHub** is a website where you can share code and work together with others via e.g. pull requests or track issues.
+**Git** is a version control system that tracks changes in your code and allows to undo mistakes. **GitHub** is a website where you can share code and work together with others via e.g. pull requests, branches, ...
 
 * Installing an R-package from GitHub is (very) easy:
 
@@ -803,7 +840,7 @@ git config --global user.email "YOUR EMAIL ADDRESS"
 ```
 * Create a GitHub account on https://github.com (use the same email as above)
 * If needed, generate a SSH key, see http://r-pkgs.had.co.nz/git.html for details
-* In RStudio: `Tools > Project Options > Git/SVN` change Version Control System to `Git`
+* In RStudio project: `Tools > Project Options > Git/SVN` change Version Control System to `Git`
 * In a Git shell, run `git init` and restart RStudio ...
 
 Git and GitHub
@@ -811,7 +848,7 @@ Git and GitHub
 
 * New **Git** pane tracks changes in the code:
 
-<img src="pictures/Fig4.png" title="plot of chunk unnamed-chunk-32" alt="plot of chunk unnamed-chunk-32" width="100%" style="display: block; margin: auto;" />
+<img src="pictures/Fig4.png" title="plot of chunk unnamed-chunk-33" alt="plot of chunk unnamed-chunk-33" width="100%" style="display: block; margin: auto;" />
 
 Git and GitHub
 =========================================================
@@ -828,7 +865,7 @@ Git and GitHub
 * Roll back changes to previous commit by clicking on `More > Revert` (cannot undo!)
 * You can also undo changes to part of a file or individual lines or changes that occured before the last commit, see e.g. http://r-pkgs.had.co.nz/git.html for more details
 
-<img src="pictures/Fig5.png" title="plot of chunk unnamed-chunk-33" alt="plot of chunk unnamed-chunk-33" width="100%" style="display: block; margin: auto;" />
+<img src="pictures/Fig5.png" title="plot of chunk unnamed-chunk-34" alt="plot of chunk unnamed-chunk-34" width="100%" style="display: block; margin: auto;" />
 
 Git and GitHub
 =========================================================
@@ -860,11 +897,11 @@ Checking package
 
 ### Check messages
 * **ERROR**: severe problem that needs to be fixed in any case
-* **WARNING**: problems that must be fixed if you want to submit to CRAN (or e.g. Bioconductor)
+* **WARNING**: problems that must be fixed if you want to submit to CRAN (or Bioconductor)
 * **NOTE**: mild problems, if you submit to CRAN try to eleminate all notes, if not explain why the note is not a problem in CRAN submission comments.
 
 ### Example output `devtools::check()`
-<img src="pictures/Fig6.png" title="plot of chunk unnamed-chunk-35" alt="plot of chunk unnamed-chunk-35" width="60%" style="display: block; margin: auto;" />
+<img src="pictures/Fig6.png" title="plot of chunk unnamed-chunk-36" alt="plot of chunk unnamed-chunk-36" width="60%" style="display: block; margin: auto;" />
 
 Checking package and Release
 =========================================================
@@ -897,7 +934,7 @@ Checking package and Release
 
 ### Example output Travis (linux, osx)
 
-<img src="pictures/Fig8.png" title="plot of chunk unnamed-chunk-37" alt="plot of chunk unnamed-chunk-37" width="100%" style="display: block; margin: auto;" />
+<img src="pictures/Fig8.png" title="plot of chunk unnamed-chunk-38" alt="plot of chunk unnamed-chunk-38" width="100%" style="display: block; margin: auto;" />
 
 Checking package and Release
 =========================================================
@@ -909,20 +946,20 @@ Checking package and Release
 * Submit to CRAN with `devtools::release()`
 
 After acceptance CRAN builds binary packages for each platform (may uncover further errors).
-<img src="pictures/Fig7.png" title="plot of chunk unnamed-chunk-38" alt="plot of chunk unnamed-chunk-38" width="50%" style="display: block; margin: auto;" />
+<img src="pictures/Fig7.png" title="plot of chunk unnamed-chunk-39" alt="plot of chunk unnamed-chunk-39" width="50%" style="display: block; margin: auto;" />
 
 Shiny applications
 =========================================================
 class: small-code
 
 ### Motivation
-In addition to vignettes, it may be useful (not always!) to interactively demonstrate the package functionalities with an R shiny application, e.g. http://jchau.shinyapps.io/moviesdemo
+In addition to vignettes, it may be useful (not always) to interactively demonstrate the package functionalities with an R shiny application, e.g. http://jchau.shinyapps.io/moviesdemo
 
 ### Host Shiny app online
 
 * Publish Shiny app to public server (e.g. http://shinyapps.io) via the `Deploy App` button
 * Deployed Shiny app can fetch R packages from CRAN or GitHub
-* Include link to in `README.md` or `DESCRIPTION` file
+* Include link in `README.md` or `DESCRIPTION` file
 
 ### Include Shiny app in package
 
@@ -942,36 +979,24 @@ runMovieApp <- function() {
 ```
 
 
-Other RStudio facilities
-=========================================================
-
-RMarkdown
-Shiny
-KnitR
-
-
-https://www.rstudio.com/products/rpackages/
-
-
 Now it is your turn!
 =========================================================
-
 
 ### Start creating an R package from scratch
 
 Using either your own R functions or the `moviesdemo` source files (.R and .rda)
 
 * It should contain at a minimum:
-  + a DESCRIPTION file
+  + a `DESCRIPTION` file
   + R scripts with Roxygen comments
-  + .rda file(s)
+  + exported or internal data in `.rda` format
 
 * Roxygen comments should include at least one package dependency (import) and an executable example.
 
-* Generate the documentation and update your NAMESPACE
+* Generate the documentation and update your `NAMESPACE`
 * Check and build your package
 
-* Extras steps: Vignettes, tests, generate the pdf manual, add a README.Rmd, ...
+* Extra steps: include vignettes, tests, generate the pdf manual, add a README.Rmd, ...
 
 &nbsp;
 

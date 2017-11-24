@@ -1,6 +1,7 @@
 #' Advise movies based on another movie
 #'
-#' Documentation...
+#' \code{advise.good.movie} takes as input a movie from the movie database and gives as output a number
+#' of movies that are similar.
 #'
 #' @param similar_to character, movie title from the database.
 #' @param how_many integer, how many movies to advise.

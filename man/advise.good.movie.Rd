@@ -25,5 +25,6 @@ A list with the following elements:
 }
 }
 \description{
-Documentation...
+\code{advise.good.movie} takes as input a movie from the movie database and gives as output a number
+of movies that are similar.
 }
