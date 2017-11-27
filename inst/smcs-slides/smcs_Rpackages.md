@@ -12,7 +12,7 @@ width: 1700
 height: 1100
 font-family: 'Helvetica'
 
-Introduction
+Content
 ========================================================
 
 
@@ -31,11 +31,12 @@ Introduction
 * Imports and exports with namespaces (`NAMESPACE`)
 * Data (`data/`)
 * Automated testing (`tests/`)
-* Vignettes (`vignetes/`)
+* Vignettes (`vignettes/`)
 * Compiled C++ code (`src/`)
 * Version control with Git and GitHub
 * Check and release your package
 * Shiny apps (`inst/`)
+
 
 RStudio
 ========================================================
@@ -112,7 +113,7 @@ install.packages("x")
 source("https://bioconductor.org/biocLite.R")
 biocLite("x")
 # or
-install_github("x")
+devtools::install_github("x")
 
 # ------- LOAD and ATTACH -------
 library("x")
@@ -128,14 +129,14 @@ library("x")
 
  5 package states
 ========================================================
-* **source**: what we are currently working on during the package development
+* **source**: the directory where we are currently working on during the package development
 * **bundled**: compressed single file (`.tar.gz.`); intermediary state  (Windows/Mac) or used for Linux distribution
-* **binary**: compressed single file used to distribute your package (very different internal structure); platform-specific: `.zip` (Windows), `.tgz` (Mac)
+* **binary**: compressed single file used to distribute your package (very different internal structure); platform-specific (optimized): `.zip` (Windows), `.tgz` (Mac)
 * **installed**: decompressed package into a package library (i.e. directory containing installed packages)
-* **in-memory**: loaded package, required to be used
+* **in-memory**: loaded package, necessary to be used
 
 <img src="pictures/PackageStates.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" width="40%" style="display: block; margin: auto;" />
-<div style="text-align: right; font-size:0.5em;" > [source: https://github.com/rstudio/cheatsheets/raw/master/package-development.pdf ] </div>
+<div style="text-align: right; font-size:0.7em;" > [source: https://github.com/rstudio/cheatsheets/raw/master/package-development.pdf] </div>
 
 
 Why you should write an R package
@@ -196,8 +197,8 @@ The RStudio interface and start of a package
 
 
 * Set the package name and the project directory
-* Select source files (= R scripts) (optionnal)
-* Create a git repository (optionnal)
+* Select source files (= R scripts) (optional)
+* Create a git repository (optional)
 
 **Note**: The choice of the name is important for your package visibility!! Name it with letters, numbers and periods only. It must start with a letter and cannot end with a period.
 
@@ -211,7 +212,7 @@ Package structure
 <div style="text-align: right">
 (not exhausitive) </div>
 
-<div style="text-align: right; font-size:0.5em;" > [source: https://github.com/rstudio/cheatsheets/raw/master/package-development.pdf ] </div>
+<div style="text-align: right; font-size:0.7em;" > [source: https://github.com/rstudio/cheatsheets/raw/master/package-development.pdf ] </div>
 
 
 
@@ -220,7 +221,7 @@ The .Rbuildignore file
 ========================================================
 
 ### Motivation
-Files from the *source* package appearing in `.Rbuildignore` are not included in the *bundled* package
+Files from the *source* package appearing in `.Rbuildignore` are not included in the *bundled* or *binary* package
 
 ### Best practice
 Use `devtools::use_build_ignore("files")` to generate the regular expression in the `.Rbuildignore` file matching the exact file(s) to be excluded
@@ -252,18 +253,17 @@ Mandatory DCF file that stores the package metadata. Specifies dependencies, who
 <div class="sourceCode"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span class="fu"><font color="#8A0868">fieldName: </font></span>value</code></pre></div>
 
 * `Title`:  One line description of the package
-* `Description` : Multiple sentences short description of the package
+* `Description`: Multiple sentences short description of the package
 
-* `Authors@R` : Package *Authors* (`"aut"`), Creator and package *Maintainer* (`"cre"`), Contributors (`"ctb"`), etc. Comprehensive code list: http://www.loc.gov/marc/relators/relaterm.html
+* `Authors@R`: Package *Authors* (`"aut"`), Creator and package *Maintainer* (`"cre"`), Contributors (`"ctb"`), etc. Comprehensive code list: http://www.loc.gov/marc/relators/relaterm.html
 
-* `Version` :
+* `Version`:
   + Released version: `<major>.<minor>.<patch>`
   + In-development package: add a 4th component, starts at 0.0.0.9000
 
-* `License` : Important for the package release. Explain who and how to use the package (e.g. GPL-3)
-A `LICENSE` file can be added for more information.
+* `License`: Important for the package release. Explain who and how to use the package (e.g. GPL-3). A `LICENSE` file can be added for more information.
 
-* `LazyData` : If `TRUE`, the datasets are lazily loaded
+* `LazyData`: If `TRUE`, the datasets are lazily loaded
 
 
 
@@ -332,7 +332,7 @@ FUN <- function(x) {
 
 
 **Notes:**
-* Alternative setting of dependencies: namespace imports
+* Alternative setting of dependencies: NAMESPACE imports
 * Versioning to specify a minimum package version: `Suggests: knitr(>=1.17)`
 
 
@@ -560,7 +560,7 @@ nrow
 ```
 # function (x) 
 # dim(x)[1L]
-# <bytecode: 0x55e9d4f096c8>
+# <bytecode: 0x7fa7b454b390>
 # <environment: namespace:base>
 ```
 
@@ -812,9 +812,9 @@ microbenchmark::microbenchmark(mExp_R(A), mExp_C(A))
 
 ```
 # Unit: microseconds
-#       expr     min       lq      mean   median      uq      max neval
-#  mExp_R(A) 323.721 331.0765 417.26786 333.6685 336.661 6839.693   100
-#  mExp_C(A)  25.515  27.0155  48.60158  31.3895  33.017 1373.861   100
+#       expr     min      lq      mean   median       uq      max neval
+#  mExp_R(A) 152.047 156.101 239.91297 159.1530 163.1785 4328.394   100
+#  mExp_C(A)   7.098   8.002  18.79295   9.0415  14.1600  713.538   100
 ```
 
 Git and GitHub
