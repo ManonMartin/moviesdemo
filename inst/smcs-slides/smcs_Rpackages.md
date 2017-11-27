@@ -560,7 +560,7 @@ nrow
 ```
 # function (x) 
 # dim(x)[1L]
-# <bytecode: 0x7fa7b454b390>
+# <bytecode: 0x55a6b9b186c8>
 # <environment: namespace:base>
 ```
 
@@ -812,9 +812,9 @@ microbenchmark::microbenchmark(mExp_R(A), mExp_C(A))
 
 ```
 # Unit: microseconds
-#       expr     min      lq      mean   median       uq      max neval
-#  mExp_R(A) 152.047 156.101 239.91297 159.1530 163.1785 4328.394   100
-#  mExp_C(A)   7.098   8.002  18.79295   9.0415  14.1600  713.538   100
+#       expr     min       lq      mean   median      uq      max neval
+#  mExp_R(A) 323.829 329.5435 408.77546 332.9870 336.788 6113.099   100
+#  mExp_C(A)  25.889  27.7695  44.65109  29.4235  34.639 1341.048   100
 ```
 
 Git and GitHub
@@ -979,14 +979,14 @@ runMovieApp <- function() {
 ```
 
 
-Now it is your turn!
+Now it is your turn
 =========================================================
 
-### Start creating an R package from scratch
+### Create an R-package from scratch
 
 Using either your own R functions or the `moviesdemo` source files (.R and .rda)
 
-* It should contain at a minimum:
+* The package should contain:
   + a `DESCRIPTION` file
   + R scripts with Roxygen comments
   + exported or internal data in `.rda` format
@@ -1000,7 +1000,7 @@ Using either your own R functions or the `moviesdemo` source files (.R and .rda)
 
 &nbsp;
 
-###  Or work on your own *in process* package
+###  Instead you can also ask questions about your personal package
 
 
 
