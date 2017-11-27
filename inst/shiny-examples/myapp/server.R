@@ -6,7 +6,7 @@ server <- function(input, output, session){
 
   select_movies <- eventReactive(eventExp = input$newpar, valueExpr = {
     advise.good.movie(isolate(input$movie), isolate(input$how_many), weights = c(isolate(input$genre),
-                                                                                 isolate(input$pop), isolate(input$rating), isolate(input$producer)))
+                      isolate(input$pop), isolate(input$rating), isolate(input$producer)))
   })
 
   output$selected <- renderUI({

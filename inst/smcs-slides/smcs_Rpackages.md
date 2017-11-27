@@ -560,7 +560,7 @@ nrow
 ```
 # function (x) 
 # dim(x)[1L]
-# <bytecode: 0x7fa7b454b390>
+# <bytecode: 0x55b054cad6c8>
 # <environment: namespace:base>
 ```
 
@@ -652,7 +652,8 @@ Data
 ```r
 #' TMDb 4800 movie dataset
 #'
-#' Metadata on 4800 movies from The Movie Database (TMDb) from the Kaggle website.
+#' Metadata on 4800 movies from The Movie Database (TMDb) from the Kaggle
+#' website.
 #'
 #' The variables are as follows:
 #'    \itemize{
@@ -773,7 +774,7 @@ Vignettes are long-form tutorials written in Markdown (as this presentation). Vi
 https://cran.r-project.org/web/packages/pdSpecEst/vignettes/depth_ranktests.html
 
 ### Setup
-* Install rmarkdown and knitr packages with `install.packages(c("rmarkdown", "knitr"))`
+* Install rmarkdown and knitr with `install.packages(c("rmarkdown", "knitr"))`
 * Install **pandoc** -> http://pandoc.org/installing.html
 * Run `devtools::use_vignette("my-vignette")` creating necessary files/folders
 
@@ -812,9 +813,9 @@ microbenchmark::microbenchmark(mExp_R(A), mExp_C(A))
 
 ```
 # Unit: microseconds
-#       expr     min      lq      mean   median       uq      max neval
-#  mExp_R(A) 152.047 156.101 239.91297 159.1530 163.1785 4328.394   100
-#  mExp_C(A)   7.098   8.002  18.79295   9.0415  14.1600  713.538   100
+#       expr     min       lq      mean   median       uq      max neval
+#  mExp_R(A) 323.953 329.3095 402.91406 332.3315 335.7115 5754.540   100
+#  mExp_C(A)  19.163  26.9645  44.74056  31.4020  32.8735 1018.214   100
 ```
 
 Git and GitHub
@@ -979,14 +980,14 @@ runMovieApp <- function() {
 ```
 
 
-Now it is your turn!
+Now it is your turn
 =========================================================
 
-### Start creating an R package from scratch
+### Create an R-package from scratch
 
 Using either your own R functions or the `moviesdemo` source files (.R and .rda)
 
-* It should contain at a minimum:
+* The package should contain:
   + a `DESCRIPTION` file
   + R scripts with Roxygen comments
   + exported or internal data in `.rda` format
@@ -1000,7 +1001,7 @@ Using either your own R functions or the `moviesdemo` source files (.R and .rda)
 
 &nbsp;
 
-###  Or work on your own *in process* package
+###  Instead you can also ask questions about your personal package
 
 
 
