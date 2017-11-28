@@ -276,7 +276,8 @@ DESCRIPTION (2)
 ### Excerpt from moviesdemo/DESCRIPION
 
 <div class="sourceCode"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span class="fu"><font color="#8A0868">Package: </font></span>moviesdemo
-<span class="fu"><font color="#8A0868">Type: </font></span>What the Package Does (Title Case)
+<span class="fu"><font color="#8A0868">Type: </font></span>Package
+<span class="fu"><font color="#8A0868">Title: </font></span>What the Package Does (Title Case)
 <span class="fu"><font color="#8A0868">Version: </font></span>0.0.0.9000
 <span class="fu"><font color="#8A0868">Authors@R: </font></span>c(
     person("Joris", "Chau", email = "j.chau@uclouvain.be", role = c("aut", "cre")),
@@ -288,7 +289,8 @@ DESCRIPTION (2)
 <span class="fu"><font color="#8A0868">Encoding: </font></span>UTF-8
 <span class="fu"><font color="#8A0868">Depends: </font></span>R (>= 3.3.1)
 <span class="fu"><font color="#8A0868">LazyData: </font></span>true
-<span class="fu"><font color="#8A0868">Imports: </font></span>shiny
+<span class="fu"><font color="#8A0868">Imports: </font></span>shiny,
+    utils
 <span class="fu"><font color="#8A0868">RoxygenNote: </font></span>6.0.1
 <span class="fu"><font color="#8A0868">Suggests: </font></span>
     knitr,
@@ -560,7 +562,7 @@ nrow
 ```
 # function (x) 
 # dim(x)[1L]
-# <bytecode: 0x7fafad842190>
+# <bytecode: 0x7fc753196590>
 # <environment: namespace:base>
 ```
 
@@ -813,9 +815,9 @@ microbenchmark::microbenchmark(mExp_R(A), mExp_C(A))
 
 ```
 # Unit: microseconds
-#       expr     min       lq      mean   median       uq      max neval
-#  mExp_R(A) 153.619 158.3420 222.53097 160.5395 168.7205 3084.743   100
-#  mExp_C(A)   7.340   8.5065  22.67197  13.3960  14.9825  844.824   100
+#       expr     min       lq     mean   median       uq      max neval
+#  mExp_R(A) 151.864 154.5465 200.5742 157.3855 159.3250 3064.514   100
+#  mExp_C(A)   6.831   8.1050  20.1611  12.1860  14.0095  796.459   100
 ```
 
 Git and GitHub

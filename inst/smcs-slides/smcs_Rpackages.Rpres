@@ -295,7 +295,8 @@ DESCRIPTION (2)
 ### Excerpt from moviesdemo/DESCRIPION
 
 <div class="sourceCode"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span class="fu"><font color="#8A0868">Package: </font></span>moviesdemo
-<span class="fu"><font color="#8A0868">Type: </font></span>What the Package Does (Title Case)
+<span class="fu"><font color="#8A0868">Type: </font></span>Package
+<span class="fu"><font color="#8A0868">Title: </font></span>What the Package Does (Title Case)
 <span class="fu"><font color="#8A0868">Version: </font></span>0.0.0.9000
 <span class="fu"><font color="#8A0868">Authors@R: </font></span>c(
     person("Joris", "Chau", email = "j.chau@uclouvain.be", role = c("aut", "cre")),
@@ -307,7 +308,8 @@ DESCRIPTION (2)
 <span class="fu"><font color="#8A0868">Encoding: </font></span>UTF-8
 <span class="fu"><font color="#8A0868">Depends: </font></span>R (>= 3.3.1)
 <span class="fu"><font color="#8A0868">LazyData: </font></span>true
-<span class="fu"><font color="#8A0868">Imports: </font></span>shiny
+<span class="fu"><font color="#8A0868">Imports: </font></span>shiny,
+    utils
 <span class="fu"><font color="#8A0868">RoxygenNote: </font></span>6.0.1
 <span class="fu"><font color="#8A0868">Suggests: </font></span>
     knitr,
