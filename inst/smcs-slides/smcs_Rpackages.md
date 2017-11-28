@@ -560,7 +560,7 @@ nrow
 ```
 # function (x) 
 # dim(x)[1L]
-# <bytecode: 0x55f459dfa6c8>
+# <bytecode: 0x7fafad842190>
 # <environment: namespace:base>
 ```
 
@@ -813,9 +813,9 @@ microbenchmark::microbenchmark(mExp_R(A), mExp_C(A))
 
 ```
 # Unit: microseconds
-#       expr     min       lq      mean   median      uq      max neval
-#  mExp_R(A) 230.409 327.3445 382.54377 331.1625 335.314 4401.210   100
-#  mExp_C(A)  17.587  28.1220  39.82582  30.4145  35.112  886.775   100
+#       expr     min       lq      mean   median       uq      max neval
+#  mExp_R(A) 153.619 158.3420 222.53097 160.5395 168.7205 3084.743   100
+#  mExp_C(A)   7.340   8.5065  22.67197  13.3960  14.9825  844.824   100
 ```
 
 Git and GitHub
@@ -978,6 +978,13 @@ runMovieApp <- function() {
   shiny::runApp(appDir, display.mode = "normal")
 }
 ```
+
+Useful resources
+=========================================================
+
+* R packages by Hadley Wickham: http://r-pkgs.had.co.nz/intro.html
+* Official (and exhaustive) Writing R Extensions manual: https://cran.r-project.org/doc/manuals/r-release/R-exts.html
+* RStudio Package development cheatsheet: https://www.rstudio.com/wp-content/uploads/2015/06/devtools-cheatsheet.pdf
 
 
 Now it is your turn

@@ -954,6 +954,13 @@ runMovieApp <- function() {
 }
 ```
 
+Useful resources
+=========================================================
+
+* R packages by Hadley Wickham: http://r-pkgs.had.co.nz/intro.html
+* Official (and exhaustive) Writing R Extensions manual: https://cran.r-project.org/doc/manuals/r-release/R-exts.html
+* RStudio Package development cheatsheet: https://www.rstudio.com/wp-content/uploads/2015/06/devtools-cheatsheet.pdf
+
 
 Now it is your turn
 =========================================================
