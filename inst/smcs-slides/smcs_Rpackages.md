@@ -562,7 +562,7 @@ nrow
 ```
 # function (x) 
 # dim(x)[1L]
-# <bytecode: 0x7fc753196590>
+# <bytecode: 0x7fb149547390>
 # <environment: namespace:base>
 ```
 
@@ -815,9 +815,9 @@ microbenchmark::microbenchmark(mExp_R(A), mExp_C(A))
 
 ```
 # Unit: microseconds
-#       expr     min       lq     mean   median       uq      max neval
-#  mExp_R(A) 151.864 154.5465 200.5742 157.3855 159.3250 3064.514   100
-#  mExp_C(A)   6.831   8.1050  20.1611  12.1860  14.0095  796.459   100
+#       expr     min       lq      mean  median       uq      max neval
+#  mExp_R(A) 151.200 158.3545 260.72361 164.843 182.7420 4489.171   100
+#  mExp_C(A)   7.441   8.5995  22.19551  13.334  15.0675  802.441   100
 ```
 
 Git and GitHub
