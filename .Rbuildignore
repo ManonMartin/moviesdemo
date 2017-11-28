@@ -1,5 +1,7 @@
-^.*\.Rproj$ # R project file
-^\.Rproj\.user$ # temporary files
-^README\.Rmd$ # README.Rmd
-^README-.*\.png$ #
-^\.travis\.yml$ # Travis test
+^.*\.Rproj$
+^\.Rproj\.user$
+^README\.Rmd$
+^README-.*\.png$
+^cran-comments\.md$
+^\.travis\.yml$
+^\.RDataTmp$

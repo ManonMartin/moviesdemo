@@ -634,7 +634,8 @@ Data
 ```{r, eval = F}
 #' TMDb 4800 movie dataset
 #'
-#' Metadata on 4800 movies from The Movie Database (TMDb) from the Kaggle website.
+#' Metadata on 4800 movies from The Movie Database (TMDb) from the Kaggle
+#' website.
 #'
 #' The variables are as follows:
 #'    \itemize{
@@ -751,7 +752,7 @@ Vignettes are long-form tutorials written in Markdown (as this presentation). Vi
 https://cran.r-project.org/web/packages/pdSpecEst/vignettes/depth_ranktests.html
 
 ### Setup
-* Install rmarkdown and knitr packages with `install.packages(c("rmarkdown", "knitr"))`
+* Install rmarkdown and knitr with `install.packages(c("rmarkdown", "knitr"))`
 * Install **pandoc** -> http://pandoc.org/installing.html
 * Run `devtools::use_vignette("my-vignette")` creating necessary files/folders
 
@@ -954,14 +955,14 @@ runMovieApp <- function() {
 ```
 
 
-Now it is your turn!
+Now it is your turn
 =========================================================
 
-### Start creating an R package from scratch
+### Create an R-package from scratch
 
 Using either your own R functions or the `moviesdemo` source files (.R and .rda)
 
-* It should contain at a minimum:
+* The package should contain:
   + a `DESCRIPTION` file
   + R scripts with Roxygen comments
   + exported or internal data in `.rda` format
@@ -975,7 +976,7 @@ Using either your own R functions or the `moviesdemo` source files (.R and .rda)
 
 &nbsp;
 
-###  Or work on your own *in process* package
+###  Instead you can also ask questions about your personal package
 
 
 

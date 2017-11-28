@@ -55,13 +55,15 @@ advise.good.movie <- function(similar_to, how_many, draw_scores = FALSE, ...){
                   (weights[3] / 4) * rating + (weights[4] / 2) * producer
   top_indices <- indices[order(total_scores, decreasing = T)[1:how_many]]
 
+  scores <- sort(total_scores, decreasing = T)[1:how_many]
+  to_watch <- movies$title[top_indices]
+
   if (draw_scores) {
     names(scores) <- to_watch
-    m <- barplot(scores, ylim=c(0,ceiling(max(scores))), col = "blue", main = "Movie scores")
-    text(m,scores*0.9, labels = round(scores,2), col="white")
+    m <- barplot(scores, ylim=c(0, ceiling(max(scores))), col = "blue", main = "Movie scores")
+    text(m, scores * 0.9, labels = round(scores, 2), col = "white")
   }
 
-  return(list(selected = movie, to_watch = movies$title[top_indices], movie_ids = top_indices,
-              scores = sort(total_scores, decreasing = T)[1:how_many]))
+  return(list(selected = movie, to_watch = to_watch, movie_ids = top_indices, scores = scores))
 
 }
