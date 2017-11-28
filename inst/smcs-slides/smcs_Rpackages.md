@@ -276,7 +276,8 @@ DESCRIPTION (2)
 ### Excerpt from moviesdemo/DESCRIPION
 
 <div class="sourceCode"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span class="fu"><font color="#8A0868">Package: </font></span>moviesdemo
-<span class="fu"><font color="#8A0868">Type: </font></span>What the Package Does (Title Case)
+<span class="fu"><font color="#8A0868">Type: </font></span>Package
+<span class="fu"><font color="#8A0868">Title: </font></span>What the Package Does (Title Case)
 <span class="fu"><font color="#8A0868">Version: </font></span>0.0.0.9000
 <span class="fu"><font color="#8A0868">Authors@R: </font></span>c(
     person("Joris", "Chau", email = "j.chau@uclouvain.be", role = c("aut", "cre")),
@@ -288,7 +289,8 @@ DESCRIPTION (2)
 <span class="fu"><font color="#8A0868">Encoding: </font></span>UTF-8
 <span class="fu"><font color="#8A0868">Depends: </font></span>R (>= 3.3.1)
 <span class="fu"><font color="#8A0868">LazyData: </font></span>true
-<span class="fu"><font color="#8A0868">Imports: </font></span>shiny
+<span class="fu"><font color="#8A0868">Imports: </font></span>shiny,
+    utils
 <span class="fu"><font color="#8A0868">RoxygenNote: </font></span>6.0.1
 <span class="fu"><font color="#8A0868">Suggests: </font></span>
     knitr,
@@ -560,7 +562,7 @@ nrow
 ```
 # function (x) 
 # dim(x)[1L]
-# <bytecode: 0x55f459dfa6c8>
+# <bytecode: 0x7fb149547390>
 # <environment: namespace:base>
 ```
 
@@ -813,9 +815,9 @@ microbenchmark::microbenchmark(mExp_R(A), mExp_C(A))
 
 ```
 # Unit: microseconds
-#       expr     min       lq      mean   median      uq      max neval
-#  mExp_R(A) 230.409 327.3445 382.54377 331.1625 335.314 4401.210   100
-#  mExp_C(A)  17.587  28.1220  39.82582  30.4145  35.112  886.775   100
+#       expr     min       lq      mean  median       uq      max neval
+#  mExp_R(A) 151.200 158.3545 260.72361 164.843 182.7420 4489.171   100
+#  mExp_C(A)   7.441   8.5995  22.19551  13.334  15.0675  802.441   100
 ```
 
 Git and GitHub
@@ -978,6 +980,13 @@ runMovieApp <- function() {
   shiny::runApp(appDir, display.mode = "normal")
 }
 ```
+
+Useful resources
+=========================================================
+
+* R packages by Hadley Wickham: http://r-pkgs.had.co.nz/intro.html
+* Official (and exhaustive) Writing R Extensions manual: https://cran.r-project.org/doc/manuals/r-release/R-exts.html
+* RStudio Package development cheatsheet: https://www.rstudio.com/wp-content/uploads/2015/06/devtools-cheatsheet.pdf
 
 
 Now it is your turn

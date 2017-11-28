@@ -1121,7 +1121,8 @@ library(&quot;x&quot;)
 <h3>Excerpt from moviesdemo/DESCRIPION</h3>
 
 <div class="sourceCode"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span class="fu"><font color="#8A0868">Package: </font></span>moviesdemo
-<span class="fu"><font color="#8A0868">Type: </font></span>What the Package Does (Title Case)
+<span class="fu"><font color="#8A0868">Type: </font></span>Package
+<span class="fu"><font color="#8A0868">Title: </font></span>What the Package Does (Title Case)
 <span class="fu"><font color="#8A0868">Version: </font></span>0.0.0.9000
 <span class="fu"><font color="#8A0868">Authors@R: </font></span>c(
     person("Joris", "Chau", email = "j.chau@uclouvain.be", role = c("aut", "cre")),
@@ -1133,7 +1134,8 @@ library(&quot;x&quot;)
 <span class="fu"><font color="#8A0868">Encoding: </font></span>UTF-8
 <span class="fu"><font color="#8A0868">Depends: </font></span>R (>= 3.3.1)
 <span class="fu"><font color="#8A0868">LazyData: </font></span>true
-<span class="fu"><font color="#8A0868">Imports: </font></span>shiny
+<span class="fu"><font color="#8A0868">Imports: </font></span>shiny,
+    utils
 <span class="fu"><font color="#8A0868">RoxygenNote: </font></span>6.0.1
 <span class="fu"><font color="#8A0868">Suggests: </font></span>
     knitr,
@@ -1428,7 +1430,7 @@ advise.good.movie &lt;- function(similar_to, how_many, ...){
 
 <pre><code># function (x) 
 # dim(x)[1L]
-# &lt;bytecode: 0x7fa7b454b390&gt;
+# &lt;bytecode: 0x7fb149547390&gt;
 # &lt;environment: namespace:base&gt;
 </code></pre>
 
@@ -1534,7 +1536,8 @@ load(&quot;R/sysdata.rda&quot;)
 
 <pre><code class="r">#&#39; TMDb 4800 movie dataset
 #&#39;
-#&#39; Metadata on 4800 movies from The Movie Database (TMDb) from the Kaggle website.
+#&#39; Metadata on 4800 movies from The Movie Database (TMDb) from the Kaggle
+#&#39; website.
 #&#39;
 #&#39; The variables are as follows:
 #&#39;    \itemize{
@@ -1675,7 +1678,7 @@ test_that(&quot;Output advise.good.movie function&quot;, {
 <h3>Setup</h3>
 
 <ul>
-<li>Install rmarkdown and knitr packages with <code>install.packages(c(&quot;rmarkdown&quot;, &quot;knitr&quot;))</code></li>
+<li>Install rmarkdown and knitr with <code>install.packages(c(&quot;rmarkdown&quot;, &quot;knitr&quot;))</code></li>
 <li>Install <strong>pandoc</strong> -&gt; <a href="http://pandoc.org/installing.html">http://pandoc.org/installing.html</a></li>
 <li>Run <code>devtools::use_vignette(&quot;my-vignette&quot;)</code> creating necessary files/folders</li>
 </ul>
@@ -1719,9 +1722,9 @@ microbenchmark::microbenchmark(mExp_R(A), mExp_C(A))
 </code></pre>
 
 <pre><code># Unit: microseconds
-#       expr     min      lq      mean   median       uq      max neval
-#  mExp_R(A) 152.047 156.101 239.91297 159.1530 163.1785 4328.394   100
-#  mExp_C(A)   7.098   8.002  18.79295   9.0415  14.1600  713.538   100
+#       expr     min       lq      mean  median       uq      max neval
+#  mExp_R(A) 151.200 158.3545 260.72361 164.843 182.7420 4489.171   100
+#  mExp_C(A)   7.441   8.5995  22.19551  13.334  15.0675  802.441   100
 </code></pre>
 
 </div>
@@ -1954,14 +1957,26 @@ notifications:
 
 </section>
 <section data-transition="linear" data-transition-speed="default">
-<h3>Now it is your turn!</h3>
+<h3>Useful resources</h3>
 <div class="slideContent" >
-<h3>Start creating an R package from scratch</h3>
+<ul>
+<li>R packages by Hadley Wickham: <a href="http://r-pkgs.had.co.nz/intro.html">http://r-pkgs.had.co.nz/intro.html</a></li>
+<li>Official (and exhaustive) Writing R Extensions manual: <a href="https://cran.r-project.org/doc/manuals/r-release/R-exts.html">https://cran.r-project.org/doc/manuals/r-release/R-exts.html</a></li>
+<li>RStudio Package development cheatsheet: <a href="https://www.rstudio.com/wp-content/uploads/2015/06/devtools-cheatsheet.pdf">https://www.rstudio.com/wp-content/uploads/2015/06/devtools-cheatsheet.pdf</a></li>
+</ul>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>Now it is your turn</h3>
+<div class="slideContent" >
+<h3>Create an R-package from scratch</h3>
 
 <p>Using either your own R functions or the <code>moviesdemo</code> source files (.R and .rda)</p>
 
 <ul>
-<li><p>It should contain at a minimum:</p>
+<li><p>The package should contain:</p>
 
 <ul>
 <li>a <code>DESCRIPTION</code> file</li>
@@ -1976,7 +1991,7 @@ notifications:
 
 <p>&nbsp;</p>
 
-<h3>Or work on your own <em>in process</em> package</h3>
+<h3>Instead you can also ask questions about your personal package</h3>
 
 </div>
 
