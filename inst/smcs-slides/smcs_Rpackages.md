@@ -37,6 +37,7 @@ Content
 * Check and release your package
 * Shiny apps (`inst/`)
 
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
 
 RStudio
 ========================================================
@@ -53,6 +54,7 @@ is (relatively) easy relying on `devtools`
 
 <img src="pictures/Fig0.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="70%" style="display: block; margin: auto;" />
 
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
 
 Demo package
 ========================================================
@@ -78,6 +80,7 @@ Install **Git** to clone or download (not install) the package to your local PC:
 * on Debian/Ubuntu: `sudo apt-get install git-core`
 * on other Linux distros: http://git-scm.com/download/linux
 
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
 
 Clone existing Git repository (1)
 ========================================================
@@ -90,6 +93,8 @@ Note: we do **not** install the package, we *only* download files from Github to
 
 <img src="pictures/Fig1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="55%" style="display: block; margin: auto;" />
 
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
+
 Clone existing Git repository (2)
 ========================================================
 
@@ -98,6 +103,8 @@ Clone existing Git repository (2)
 * Select path to cloned package on local pc
 
 <img src="pictures/Fig2.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" width="60%" style="display: block; margin: auto;" />
+
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
 
 Work with existing R packages
 ========================================================
@@ -126,6 +133,7 @@ library("x")
 * https://github.com/ManonMartin/MBXUCL
 * https://cran.r-project.org/web/packages/pdSpecEst/
 
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
 
  5 package states
 ========================================================
@@ -138,6 +146,7 @@ library("x")
 <img src="pictures/PackageStates.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" width="40%" style="display: block; margin: auto;" />
 <div style="text-align: right; font-size:0.7em;" > [source: https://github.com/rstudio/cheatsheets/raw/master/package-development.pdf] </div>
 
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
 
 Why you should write an R package
 ========================================================
@@ -159,6 +168,7 @@ Why you should write an R package
 * More upstream work
 * must pass checks and meet the standards
 
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
 
 The "devtools" R package
 ========================================================
@@ -182,6 +192,7 @@ The "devtools" R package
 
 More info: https://cran.r-project.org/web/packages/devtools/
 
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
 
 The RStudio interface and start of a package
 ========================================================
@@ -202,6 +213,8 @@ The RStudio interface and start of a package
 
 **Note**: The choice of the name is important for your package visibility!! Name it with letters, numbers and periods only. It must start with a letter and cannot end with a period.
 
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
+
 Package structure
 ========================================================
 
@@ -215,7 +228,7 @@ Package structure
 <div style="text-align: right; font-size:0.7em;" > [source: https://github.com/rstudio/cheatsheets/raw/master/package-development.pdf ] </div>
 
 
-
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
 
 The .Rbuildignore file
 ========================================================
@@ -238,7 +251,7 @@ Use `devtools::use_build_ignore("files")` to generate the regular expression in 
 ```
 
 
-
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
 
 DESCRIPTION (1)
 ========================================================
@@ -267,7 +280,7 @@ Mandatory DCF file that stores the package metadata. Specifies dependencies, who
 
 
 
-
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
 
 
 DESCRIPTION (2)
@@ -299,7 +312,7 @@ DESCRIPTION (2)
 <span class="fu"><font color="#8A0868">VignetteBuilder: </font></span>knitr
 </code></pre></div>
 
-
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
 
 Dependencies in DESCRIPTION
 ========================================================
@@ -338,7 +351,7 @@ FUN <- function(x) {
 * Versioning to specify a minimum package version: `Suggests: knitr(>=1.17)`
 
 
-
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
 
 
 R scripts good practices (1)
@@ -362,6 +375,7 @@ Use `devtools::load_all()` for the R functions development workflow to avoid a r
 
 <img src="pictures/load_all.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" width="55%" style="display: block; margin: auto;" />
 
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
 
 R scripts good practices (2)
 ========================================================
@@ -390,6 +404,7 @@ FUN(a = c(1, 4, 6, F, 5, 2, 1) , type="mean")
 FUN(a = c(1, 4, 6, 5, 5, 2, 1), type="meen")
 ```
 
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
 
 R scripts good practices (3)
 ========================================================
@@ -426,6 +441,7 @@ FUN(a = c(1, 4, 6, 5, 5, 2, 1), type="mean")
 # [1] 3.428571
 ```
 
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
 
 Object documentation
 ========================================================
@@ -456,6 +472,8 @@ Documentation...
 }
 </code></pre></div>
 
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
+
 Writing function help files with Roxygen2 (1)
 ========================================================
 
@@ -477,7 +495,7 @@ Easier documentation generation: (1) simplified format (+ .Rd syntax) ; (2) the 
   + `@return`: describes the outputs of the function
   + `@export` and `@import` (or `@importFrom`): specifies NAMESPACE imports/exports
 
-
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
 
 
 
@@ -512,6 +530,8 @@ advise.good.movie <- function(similar_to, how_many, ...){
   }
 ```
 
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
+
 Package documentation
 ========================================================
 
@@ -532,7 +552,7 @@ Package documentation
   4. Overview of the main components of the package (a Vignette is more exhaustive!)
 
 
-
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
 
 
 
@@ -549,6 +569,8 @@ system("R CMD Rd2pdf /path/to/package_root")
 
 **Note**: if you submit your package to CRAN, the reference manual is created automatically by CRAN, (e.g. https://cran.r-project.org/web/packages/pdSpecEst/pdSpecEst.pdf)
 
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
+
 
 NAMESPACE*
 ========================================================
@@ -562,7 +584,7 @@ nrow
 ```
 # function (x) 
 # dim(x)[1L]
-# <bytecode: 0x5566087b76c8>
+# <bytecode: 0x561b409946c8>
 # <environment: namespace:base>
 ```
 
@@ -589,6 +611,8 @@ nrow(mtcars)
 # [1] 32
 ```
 
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
+
 NAMESPACE
 =========================================================
 
@@ -609,6 +633,8 @@ We write **imports** and **exports** through Roxygen comments in our `.R` files.
 2. Run `devtools::document()` (or `Ctrl/Cmd + Shift + D` in RStudio) to Roxygenize files
 3. Repeat until correct functions are imported and exported
 
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
+
 NAMESPACE
 =========================================================
 
@@ -618,6 +644,7 @@ NAMESPACE
 
 <img src="pictures/Fig3.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="55%" style="display: block; margin: auto;" />
 
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
 
 Data
 ========================================================
@@ -644,6 +671,9 @@ load("R/sysdata.rda")
 ### Documenting datasets
 
 Objects in `data/` are always exported and therefore *need* documentation. Documenting data is (almost) the same as documenting a function. Document the name of the dataset and save it in `R/`, e.g. `R/data.R`. See http://r-pkgs.had.co.nz/data.html for more details and how to include other types of data.
+
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
+
 
 Data
 ========================================================
@@ -678,6 +708,7 @@ Data
 
 **Note**: view the resulting help file (after documentation `Ctrl/Cmd + Shift + D`) e.g. with `?movies`.
 
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
 
 Automated Testing
 =========================================================
@@ -702,6 +733,8 @@ devtools::use_testthat() ## creates necessary files/folders
 * Modify code or tests
 * Test package with `Ctrl/Cmd + Shift + T` or `devtools::test()` or `Build > Test Package`
 * Repeat until all tests pass
+
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
 
 Automated Testing
 =========================================================
@@ -736,6 +769,8 @@ expect_error(1 / "a", "non-numeric argument")
 
 * See http://r-pkgs.had.co.nz/tests.html for more details and writing your own `expect_`'s
 
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
+
 Automated Testing
 =========================================================
 
@@ -768,6 +803,8 @@ test_that("Output advise.good.movie function", {
 })
 ```
 
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
+
 Vignettes
 =========================================================
 
@@ -786,6 +823,8 @@ https://cran.r-project.org/web/packages/pdSpecEst/vignettes/depth_ranktests.html
 
 ### Markdown and Knitr
 **Markdown** is a simple text formatting language, not as flexible as LaTeX, but easy to write and read. **Knitr** allows to intermingle code and text by running R code and translating it into formatted Markdown. See http://r-pkgs.had.co.nz/vignettes.html for a good intro to Markdown/Knitr with RStudio.
+
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
 
 Compiled code*
 =========================================================
@@ -815,10 +854,12 @@ microbenchmark::microbenchmark(mExp_R(A), mExp_C(A))
 
 ```
 # Unit: microseconds
-#       expr     min       lq      mean  median      uq      max neval
-#  mExp_R(A) 352.575 370.4015 434.91609 375.273 381.763 4627.715   100
-#  mExp_C(A)  28.987  31.2865  47.49476  36.094  39.690 1200.809   100
+#       expr     min       lq      mean   median       uq      max neval
+#  mExp_R(A) 295.182 303.1135 386.55642 307.2415 310.5595 6032.901   100
+#  mExp_C(A)  22.825  24.5285  47.41683  28.4350  30.8515 1472.720   100
 ```
+
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
 
 Git and GitHub
 =========================================================
@@ -846,12 +887,16 @@ git config --global user.email "YOUR EMAIL ADDRESS"
 * In RStudio project: `Tools > Project Options > Git/SVN` change Version Control System to `Git`
 * In a Git shell, run `git init` and restart RStudio ...
 
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
+
 Git and GitHub
 =========================================================
 
 * New **Git** pane tracks changes in the code:
 
 <img src="pictures/Fig4.png" title="plot of chunk unnamed-chunk-33" alt="plot of chunk unnamed-chunk-33" width="100%" style="display: block; margin: auto;" />
+
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
 
 Git and GitHub
 =========================================================
@@ -869,6 +914,8 @@ Git and GitHub
 * You can also undo changes to part of a file or individual lines or changes that occured before the last commit, see e.g. http://r-pkgs.had.co.nz/git.html for more details
 
 <img src="pictures/Fig5.png" title="plot of chunk unnamed-chunk-34" alt="plot of chunk unnamed-chunk-34" width="100%" style="display: block; margin: auto;" />
+
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
 
 Git and GitHub
 =========================================================
@@ -890,6 +937,8 @@ git push -u origin master
 
 Go to, for instance, http://r-pkgs.had.co.nz/git.html to learn how to work together with others using Git + GitHub (e.g. *branches*, *pull requests*, *tracking issues*, etc.).
 
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
+
 Checking package
 =========================================================
 
@@ -905,6 +954,8 @@ Checking package
 
 ### Example output `devtools::check()`
 <img src="pictures/Fig6.png" title="plot of chunk unnamed-chunk-36" alt="plot of chunk unnamed-chunk-36" width="60%" style="display: block; margin: auto;" />
+
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
 
 Checking package and Release
 =========================================================
@@ -932,12 +983,16 @@ notifications:
 * Go to https://travis-ci.org/ and enable Travis for repo you want to test
 * Push to GitHub and check build results on Travis website
 
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
+
 Checking package and Release
 =========================================================
 
 ### Example output Travis (linux, osx)
 
 <img src="pictures/Fig8.png" title="plot of chunk unnamed-chunk-38" alt="plot of chunk unnamed-chunk-38" width="100%" style="display: block; margin: auto;" />
+
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
 
 Checking package and Release
 =========================================================
@@ -950,6 +1005,8 @@ Checking package and Release
 
 After acceptance CRAN builds binary packages for each platform (may uncover further errors).
 <img src="pictures/Fig7.png" title="plot of chunk unnamed-chunk-39" alt="plot of chunk unnamed-chunk-39" width="50%" style="display: block; margin: auto;" />
+
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
 
 Shiny applications
 =========================================================
@@ -981,6 +1038,8 @@ runMovieApp <- function() {
 }
 ```
 
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
+
 Useful resources
 =========================================================
 
@@ -988,6 +1047,7 @@ Useful resources
 * Official (and exhaustive) Writing R Extensions manual: https://cran.r-project.org/doc/manuals/r-release/R-exts.html
 * RStudio Package development cheatsheet: https://www.rstudio.com/wp-content/uploads/2015/06/devtools-cheatsheet.pdf
 
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
 
 Now it is your turn
 =========================================================
@@ -1012,5 +1072,5 @@ Using either your own R functions or the `moviesdemo` source files (.R and .rda)
 
 ###  Instead you can also ask questions about your personal package
 
-
+<IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
 

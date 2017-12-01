@@ -1,12 +1,11 @@
 Package: moviesdemo
 Type: Package
-Title: What the Package Does (Title Case)
+Title: The Movie Database Demo Package
 Version: 0.0.0.9000
 Authors@R: c(
     person("Joris", "Chau", email = "j.chau@uclouvain.be", role = c("aut", "cre")),
     person("Manon", "Martin", email = "manon.martin@uclouvain.be", role = "aut"))
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: A demo package accompanying the slides for the SMCS course on writing and publishing R-packages with RStudio.
 License: CC0
 URL: https://github.com/JorisChau/moviesdemo
 Encoding: UTF-8
