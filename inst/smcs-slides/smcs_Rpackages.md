@@ -11,6 +11,7 @@ date: 28 November 2017
 width: 1700
 height: 1100
 font-family: 'Helvetica'
+<IMG style="position:absolute;top:76%;right:37%;width:500px;border:0;"SRC="pictures/logo.png">
 
 Content
 ========================================================
@@ -584,7 +585,7 @@ nrow
 ```
 # function (x) 
 # dim(x)[1L]
-# <bytecode: 0x561b409946c8>
+# <bytecode: 0x7fdf35832190>
 # <environment: namespace:base>
 ```
 
@@ -854,9 +855,9 @@ microbenchmark::microbenchmark(mExp_R(A), mExp_C(A))
 
 ```
 # Unit: microseconds
-#       expr     min       lq      mean   median       uq      max neval
-#  mExp_R(A) 295.182 303.1135 386.55642 307.2415 310.5595 6032.901   100
-#  mExp_C(A)  22.825  24.5285  47.41683  28.4350  30.8515 1472.720   100
+#       expr     min      lq      mean  median      uq      max neval
+#  mExp_R(A) 152.102 167.077 237.29130 175.733 195.562 3165.601   100
+#  mExp_C(A)   7.412   8.863  20.51772  13.329  15.918  681.155   100
 ```
 
 <IMG style="position:absolute;top:-5%;right:-10%;width:200px;border:0;"SRC="pictures/logo.png">
