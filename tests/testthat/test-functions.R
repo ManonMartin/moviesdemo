@@ -26,3 +26,4 @@ test_that("Output advise.good.movie function", {
                  "Argument 'how_many' should be a number...")
 
 })
+
