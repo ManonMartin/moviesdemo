@@ -16,6 +16,11 @@
 #'   \item{\code{scores}}{similarity scores of the advised movie(s)}
 #' }
 #'
+#'@examples
+#' suggestions <- advise.good.movie(similar_to = "Interstellar", how_many = 3,
+#' draw_scores = TRUE, weights = c("genre"=1, "popularity"=1, "rating"=1,
+#' "production company"=1))
+#'
 #' @import graphics
 #'
 #' @export

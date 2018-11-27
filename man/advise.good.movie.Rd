@@ -28,3 +28,9 @@ A list with the following elements:
 \code{advise.good.movie} takes as input a movie from the movie database and gives as output a number
 of movies that are similar.
 }
+\examples{
+suggestions <- advise.good.movie(similar_to = "Interstellar", how_many = 3,
+draw_scores = TRUE, weights = c("genre"=1, "popularity"=1, "rating"=1,
+"production company"=1))
+
+}
