@@ -9,11 +9,6 @@
 A demo package for the SMCS course on creating and publishing R packages,
 based on metadata of 4800 movies from The Movie Database.
 }
-\section{Course slides}{
-
-Course slides can be accessed with the \code{\link{openSlides}} function
-}
-
 \section{moviesdemo functions}{
 
 \describe{

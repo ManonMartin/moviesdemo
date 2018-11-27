@@ -1,13 +1,16 @@
-#' Movie similarity based on production companies
-#'
-#' The similarity of 2 movies A and B is measured based on their potential common production companies.
-#'
-#' @param movie_A character, one movie title from the movie database
-#' @param movie_B character, another movie title from the movie database
-#'
-#' @return A scalar : the similarity based on production companies
-#'
-#' @export
+# Movie similarity based on production companies
+#
+# The similarity of 2 movies A and B is measured based on their potential common production companies.
+#
+# parameters
+################
+# movie_A character, one movie title from the movie database
+# movie_B character, another movie title from the movie database
+#
+# return
+################
+# A scalar : the similarity based on production companies
+#
 sim.producers <- function(movie_A, movie_B){
 
   movies <- moviesdemo::movies

@@ -1,14 +1,17 @@
-#' Movie similarity based on genre
-#'
-#' The similarity of 2 movies A and B is measured based on their
-#' potential common genre.
-#'
-#' @param movie_A character, one movie title from the movie database
-#' @param movie_B character, another movie title from the movie database
-#'
-#' @return A scalar : the similarity based on genre
-#'
-#' @export
+# Movie similarity based on genre
+#
+# The similarity of 2 movies A and B is measured based on their
+# potential common genre.
+#
+# parameters
+################
+# movie_A character, one movie title from the movie database
+# movie_B character, another movie title from the movie database
+#
+# return
+################
+# A scalar : the similarity based on genre
+#
 sim.genres <- function(movie_A, movie_B){
 
   movies <- moviesdemo::movies

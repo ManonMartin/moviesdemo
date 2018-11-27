@@ -11,18 +11,3 @@ runMovieApp <- function() {
 
   shiny::runApp(appDir, display.mode = "normal")
 }
-
-#' Open html slides SMCS course
-#'
-#' This function opens the course slides.
-#'
-#' @importFrom utils browseURL
-#' @export
-openSlides <- function() {
-  slidesFile <- system.file("smcs-slides", "smcs_Rpackages.html", package = "moviesdemo")
-  if (slidesFile == "") {
-    stop("Could not find correct file. Try re-installing `moviesdemo`.", call. = FALSE)
-  }
-
-  utils::browseURL(slidesFile)
-}
