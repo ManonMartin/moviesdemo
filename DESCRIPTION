@@ -7,10 +7,10 @@ Authors@R: c(
     person("Manon", "Martin", email = "manon.martin@uclouvain.be", role = "aut"))
 Description: A demo package accompanying the slides for the SMCS course on writing and publishing R-packages with RStudio.
 License: CC0
-URL: https://github.com/JorisChau/moviesdemo
+URL: https://github.com/ManonMartin/moviesdemo
 Encoding: UTF-8
 Depends:
-    R (>= 3.3.1)
+    R (>= 3.5)
 LazyData: true
 Imports:
     shiny,
