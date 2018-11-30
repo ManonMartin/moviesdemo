@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-![](inst/smcs-slides/pictures/logo.png)
+![](inst/pictures/logo.png)
 
 # moviesdemo
 
@@ -25,16 +25,10 @@ You can install moviesdemo from github with:
 
 ```{r gh-installation, eval = FALSE}
 # install.packages("devtools")
-devtools::install_github("JorisChau/moviesdemo")
+devtools::install_github("ManonMartin/moviesdemo")
 ```
 
 ## Important functions
-
-To open the SMCS course slides:
-
-```{r, eval = FALSE}
-runSlides()
-```
 
 To run an interactive movie-selection app:
 
